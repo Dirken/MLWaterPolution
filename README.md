@@ -1,6 +1,6 @@
 # Final degree project 2017-2018, FIB-UPC.
 
-## Title: 
+## Title
 System that predicts the origin of fecal matter contamination in water.
 
 ## Motivation
