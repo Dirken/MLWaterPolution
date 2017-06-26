@@ -10,9 +10,9 @@ shinyServer(function(input, output) {
   # Argument selector:
   output$ArgSelect <- renderUI({
     if (length(ArgNames())==0) return(NULL)
-    
     selectInput("arg","Argument:",ArgNames())
   })
+  
   
   ## Arg text field:
   output$ArgText <- renderUI({
@@ -30,16 +30,13 @@ shinyServer(function(input, output) {
     }
   })
   
-  
   ### Data import:
   Dataset <- reactive({
     if (is.null(input$file)) {
       # User has not uploaded a file yet
       return(data.frame())
     }
-    
     args <- grep(paste0("^",input$readFunction,"__"), names(input), value = TRUE)
-    
     argList <- list()
     for (i in seq_along(args))
     {
@@ -66,7 +63,6 @@ shinyServer(function(input, output) {
     if (is.null(input$vars) || length(input$vars)==0) return(NULL)
     return(Dataset()[,input$vars,drop=FALSE])
   })
-  
   
   ### Download dump:
   output$downloadDump <- downloadHandler(

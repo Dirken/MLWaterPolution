@@ -10,7 +10,12 @@ shinyUI(pageWithSidebar(
     tags$head(
       tags$style(type="text/css", "select[multiple] { width: 100%; height:10em}"),
       tags$style(type="text/css", "select { width: 100%}"),
-      tags$style(type="text/css", "input { width: 19em; max-width:100%}")
+      tags$style(type="text/css", "input { width: 19em; max-width:100%}"),
+      tags$style(type="text/css", "shiny.tag.list { color: blue}"),
+      #Sweet alert added:
+      tags$script(src = "https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.5/sweetalert2.min.js"),
+      tags$script(src = "https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.5/sweetalert2.min.css")
+      
     ),
     
     # Select filetype:
@@ -33,6 +38,7 @@ shinyUI(pageWithSidebar(
       "read.ssd",
       "read.systat",
       "read.xport",
+      "read_excel",
       
       # Advanced functions:
       "scan",
