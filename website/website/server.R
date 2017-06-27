@@ -50,20 +50,6 @@ shinyServer(function(input, output) {
     return(Dataset)
   })
   
-  # Select variables:
-  output$varselect <- renderUI({
-    if (identical(Dataset(), '') || identical(Dataset(),data.frame())) return(NULL)
-    # Variable selection:    
-    selectInput("vars", "Variables to use:",
-                names(Dataset()), names(Dataset()), multiple =TRUE)            
-  })
-  
-  # Show table:
-  #output$table <- renderTable({
-  #  if (is.null(input$vars) || length(input$vars)==0) return(NULL)
-  #  return(Dataset()[,input$vars,drop=FALSE])
-  #})
-  
   output$table <- renderD3tf({
     
     # Define table properties. See http://tablefilter.free.fr/doc.php
@@ -76,10 +62,22 @@ shinyServer(function(input, output) {
         sort_types = c("String", rep("Number", ncol(Dataset())))
       )
     );
-    
+
     d3tf(Dataset(),
          tableProps = tableProps,
+         extensions = list(
+           list(name = "sort")
+           ,
+           list( name = "colsVisibility",
+                 at_start =  c(8, 9, 10, 11),
+                 text = 'Hide columns: ',
+                 enable_tick_all =  TRUE
+           ),
+           list( name = "filtersVisibility",
+                 visible_at_start =  TRUE)
+         ),
          showRowNames = TRUE,
+         filterInput = TRUE,
          tableStyle = "table table-bordered");
   })
   

@@ -54,8 +54,6 @@ shinyUI(pageWithSidebar(
     # Upload data:
     fileInput("file", "Upload data-file:"),
     
-    # Variable selection:
-    htmlOutput("varselect"),
     
     br(),
     
