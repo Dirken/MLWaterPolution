@@ -1,3 +1,5 @@
 library("shiny")
 library("foreign")
-library(readxl)
+library(shiny)
+library(htmlwidgets)
+library(D3TableFilter)

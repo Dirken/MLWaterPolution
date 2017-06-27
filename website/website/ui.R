@@ -68,6 +68,6 @@ shinyUI(pageWithSidebar(
   
   # Main:
   mainPanel(
-    tableOutput("table")
+    column(width = 10, d3tfOutput('table', height = "auto"))
   )
 ))

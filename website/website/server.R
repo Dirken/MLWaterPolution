@@ -59,12 +59,32 @@ shinyServer(function(input, output) {
   })
   
   # Show table:
-  output$table <- renderTable({
-    if (is.null(input$vars) || length(input$vars)==0) return(NULL)
-    return(Dataset()[,input$vars,drop=FALSE])
+  #output$table <- renderTable({
+  #  if (is.null(input$vars) || length(input$vars)==0) return(NULL)
+  #  return(Dataset()[,input$vars,drop=FALSE])
+  #})
+  
+  output$table <- renderD3tf({
+    
+    # Define table properties. See http://tablefilter.free.fr/doc.php
+    # for a complete reference
+    tableProps <- list(
+      btn_reset = TRUE,
+      sort = TRUE,
+      sort_config = list(
+        # alphabetic sorting for the row names column, numeric for all other columns
+        sort_types = c("String", rep("Number", ncol(Dataset())))
+      )
+    );
+    
+    d3tf(Dataset(),
+         tableProps = tableProps,
+         showRowNames = TRUE,
+         tableStyle = "table table-bordered");
   })
   
-  ### Download dump:
+
+    ### Download dump:
   output$downloadDump <- downloadHandler(
     filename = "Rdata.R",
     content = function(con) {
