@@ -62,7 +62,7 @@ shinyServer(function(input, output) {
         sort_types = c("String", rep("Number", ncol(Dataset())))
       )
     );
-
+    
     d3tf(Dataset(),
          tableProps = tableProps,
          extensions = list(
@@ -78,6 +78,7 @@ shinyServer(function(input, output) {
          ),
          showRowNames = TRUE,
          filterInput = TRUE,
+         edit = TRUE,
          tableStyle = "table table-bordered");
   })
   

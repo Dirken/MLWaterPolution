@@ -1,7 +1,7 @@
 shinyUI(pageWithSidebar(
   
   # Header:
-  headerPanel("R data reader"),
+  headerPanel("TFG"),
   
   # Input in sidepanel:
   sidebarPanel(
