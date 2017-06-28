@@ -79,6 +79,8 @@ shinyServer(function(input, output) {
          showRowNames = TRUE,
          filterInput = TRUE,
          edit = TRUE,
+         selectableRows = "multi",
+         selectableRowsClass = "info",
          tableStyle = "table table-bordered");
   })
   
