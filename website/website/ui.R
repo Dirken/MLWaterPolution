@@ -40,7 +40,7 @@ dashboardPage(
         tabItem("tab1",
           fluidRow(
             tabBox(
-              title = "First tabBox",
+              title = "TabBox",
               # The id lets us use input$tabset1 on the server to find the current tab
               id = "tabset1", height = 500, width = 9,
               tabPanel("Tab1", "First tab content"),
@@ -79,8 +79,8 @@ dashboardPage(
         ##############################################################################
         tabItem("tab2",
           # Input in sidepanel:
-          sidebarPanel(
-            tags$style(type='text/css', ".well { max-width: 20em; }"),
+          sidebarPanel(width = 2,
+            tags$style(type='text/css', ".well { max-width: 15em; }"),
             # Tags:
             tags$head(
               tags$style(type="text/css", "select[multiple] { width: 100%; height:10em}"),
@@ -134,9 +134,14 @@ dashboardPage(
             
             textInput("name","Dataset name:","Data"),
             
-            downloadLink('downloadDump', 'Download source'),
-            downloadLink('downloadSave', 'Download binary')
+            downloadButton('downloadSave', 'Download binary')
+
+          ),
+
+          fluidRow(
+            column(width = 9, d3tfOutput('table', height = "auto"))
           )
+          
         )
                   
     )

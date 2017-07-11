@@ -85,21 +85,14 @@ shinyServer(function(input, output) {
   })
   
   
-  ### Download dump:
-  output$downloadDump <- downloadHandler(
-    filename = "Rdata.R",
-    content = function(con) {
-      assign(input$name, Dataset()[,input$vars,drop=FALSE])
-      dump(input$name, con)
-    }
-  )
-  
-  ### Download save:
+  ### Download csv
   output$downloadSave <- downloadHandler(
-    filename = "Rdata.RData",
+    filename = "Rdata.csv",
     content = function(con) {
       assign(input$name, Dataset()[,input$vars,drop=FALSE])
       save(list=input$name, file=con)
-    }
+    },
+    contentType = "text/csv"
   )
+  
 })
