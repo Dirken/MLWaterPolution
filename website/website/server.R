@@ -1,4 +1,7 @@
-shinyServer(function(input, output) {
+
+shinyServer(function(input, output, session) {
+
+
   
   ### Argument names:
   ArgNames <- reactive({
