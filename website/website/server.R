@@ -1,8 +1,28 @@
 
-shinyServer(function(input, output, session) {
-
+shinyServer(function(input, output,session) {
 
   
+  
+  observeEvent(input$tab1, {
+    updateTabsetPanel(session, "inTabset", selected = "Scenario")
+  })
+  observeEvent(input$tab21, {
+    updateTabsetPanel(session, "inTabset", selected = "Table")
+  })
+  observeEvent(input$tab22, {
+    updateTabsetPanel(session, "inTabset", selected = "Modelling")
+  })
+  observeEvent(input$tab31, {
+    updateTabsetPanel(session, "inTabset", selected = "Scenario")
+  })
+  observeEvent(input$tab32, {
+    updateTabsetPanel(session, "inTabset", selected = "Results")
+  })
+  
+  
+  observeEvent(input$tab41, {
+    updateTabsetPanel(session, "inTabset", selected = "Modelling")
+  })
   ### Argument names:
   ArgNames <- reactive({
     Names <- names(formals(input$readFunction)[-1])
