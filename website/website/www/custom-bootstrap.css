@@ -107,3 +107,10 @@
 .right{
   float: right;
 }
+.left{
+  float: left;
+}
+.down{
+  bottom: 15%;
+  position: relative;
+}
