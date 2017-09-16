@@ -114,3 +114,27 @@
   bottom: 15%;
   position: relative;
 }
+.center{
+  margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.small{
+  width: 100px;
+  height: 100px;
+}
+.asdf{
+  list-style: none;
+  display: inline-flex;
+  height:auto;
+}
+.middle{
+    margin-top: 8.5%;
+
+}
+.big-dot{
+  width: 20px;
+}
