@@ -3,7 +3,6 @@ library(leaflet)
 navbarPage(title="Fecal Matter predictor",
            tabsetPanel(id = "inTabset",
            tabPanel("Table",
-                    p("This is tab 1"), 
                     tags$div(
                       tags$div(class="right down",actionButton("tab1", "Next")),
                       tags$div(class="center", tags$ul(class="asdf",list(
@@ -103,7 +102,6 @@ navbarPage(title="Fecal Matter predictor",
            ),
 
            tabPanel("Modelling",
-                    p("This is tab 3"),
                     tags$div(
                       tags$div(class="left down",actionButton("tab31", "Previous")),
                       tags$div(class="right down", actionButton("tab32", "Next")),
