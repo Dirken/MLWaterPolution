@@ -2,75 +2,78 @@ library(leaflet)
 
 navbarPage(title="Fecal Matter predictor",
            tabsetPanel(id = "inTabset",
-           tabPanel("Table",
-                    tags$ul(class="asdf",
-                                     # Select filetype:
-                                     selectInput("readFunction", "Function to read data:", c(
-                                       # Base R:
-                                       "read.table",
-                                       "read.csv",
-                                       "read.csv2",
-                                       "read.delim",
-                                       "read.delim2",
+                  tabPanel("Table",
+                           absolutePanel(id = "controls", class = "panel panel-default", fixed = TRUE,
+                                         draggable = TRUE, left = "auto", right = 20, bottom = "auto",
+                                         width = 250, height = "auto", 
+                                         HTML('<button data-toggle="collapse" data-target="#demo"> <span class="glyphicon-class"></span></button>'),
+                                         tags$div(id = 'demo',  class="collapse", list(                                         
+                                           selectInput("readFunction", "Format to read", c(
+                                             # Base R:
+                                             "read.table",
+                                             "read.csv",
+                                             "read.csv2",
+                                             "read.delim",
+                                             "read.delim2",
+                                             
+                                             # foreign functions:
+                                             "read.spss",
+                                             "read.arff",
+                                             "read.dbf",
+                                             "read.dta",
+                                             "read.epiiinfo",
+                                             "read.mtp",
+                                             "read.octave",
+                                             "read.ssd",
+                                             "read.systat",
+                                             "read.xport",
+                                             "read_excel",
+                                             
+                                             # Advanced functions:
+                                             "scan",
+                                             "readLines"
+                                           )
+                                           ),
+                                           
+                                           # Argument selecter:
+                                           htmlOutput("ArgSelect"),
+                                           
+                                           # Argument field:
+                                           htmlOutput("ArgText"),
+                                           
+                                           # Upload data:
+                                           fileInput("file", "Browse file"),
+                                           downloadButton('downloadData', 'Download')))
 
-                                       # foreign functions:
-                                       "read.spss",
-                                       "read.arff",
-                                       "read.dbf",
-                                       "read.dta",
-                                       "read.epiiinfo",
-                                       "read.mtp",
-                                       "read.octave",
-                                       "read.ssd",
-                                       "read.systat",
-                                       "read.xport",
-                                       "read_excel",
-
-                                       # Advanced functions:
-                                       "scan",
-                                       "readLines"
-                                     )),
-
-                                     # Argument selecter:
-                                     htmlOutput("ArgSelect"),
-
-                                     # Argument field:
-                                     htmlOutput("ArgText"),
-
-                                     # Upload data:
-                                     fileInput("file", "Upload data-file:"),
-
-
-                                     br(),
-                    tags$li(downloadButton('downloadData', 'Download')),
-                    tags$li(actionButton("saveBtn", "Save"))
-                    ),
-                    
-                    HTML("<br>"),
-                    mainPanel(
-                      column(12,rHandsontableOutput("hot"))
-                    ),
-
-                    HTML("<br>"),
-                    column(width = 12,
-                    tags$div(
-                      tags$div(class="center", tags$ul(class="asdf",list(
-                        tags$li(img(class="small",src='table-active.png')),
-                        tags$li(class="middle", img(class="big-dot", src='dot.png')),
-                        tags$li(img(class="small",src='options.png')),
-                        tags$li(class="middle", img(class="big-dot", src='dot.png')),
-                        
-                        tags$li(img(class="small",src='omg1.png')),
-                        tags$li(class="middle", img(class="big-dot", src='dot.png')),
-                        
-                        tags$li(img(class="small",src='chart.png'))
-                        
-                      ))),
-                      HTML("<br>"),
-                      tags$div(class="right down",actionButton("tab1", "Next"))
+     
                       
-                    ))
-                    
+                      ),
+                      br(),
+                      mainPanel(
+                        
+                        column(12,
+                               textInput("searchId", "Search", "Search"),
+                               rHandsontableOutput("hot"))
+                      ),
+                    br()
+                    # column(width = 12,
+                    #        tags$div(
+                    #          tags$div(class="center", tags$ul(class="asdf",list(
+                    #            tags$li(img(class="small",src='table-active.png')),
+                    #            tags$li(class="middle", img(class="big-dot", src='dot.png')),
+                    #            tags$li(img(class="small",src='options.png')),
+                    #            tags$li(class="middle", img(class="big-dot", src='dot.png')),
+                    #            
+                    #            tags$li(img(class="small",src='omg1.png')),
+                    #            tags$li(class="middle", img(class="big-dot", src='dot.png')),
+                    #            
+                    #            tags$li(img(class="small",src='chart.png'))
+                    #            
+                    #          ))),
+                    #          HTML("<br>"),
+                    #          tags$div(class="right down",actionButton("tab1", "Next"))
+                    #          
+                    #        ))
 
            ),
            tabPanel("Scenario",
@@ -83,65 +86,65 @@ navbarPage(title="Fecal Matter predictor",
                 ##grafica: aged+diluted, point source, etc
                 
                 radioButtons("mollecular", label = "Do you want to use only mollecular variables?", choices = list("Yes" = 1, "No" = 2), 
-                             selected = 1, inline = TRUE),
+                             selected = 1, inline = TRUE)
                 
-                
-                tags$div(
-                  tags$div(class="left down",actionButton("tab21", "Previous")),
-                  tags$div(class="right down",actionButton("tab22", "Next")),
-                  tags$div(class="center", tags$ul(class="asdf",list(
-                    tags$li(img(class="small",src='table.png')),
-                    tags$li(class="middle", img(class="big-dot", src='dot.png')),
-                    tags$li(img(class="small",src='options-2.png')),
-                    tags$li(class="middle", img(class="big-dot", src='dot.png')),
-                    
-                    tags$li(img(class="small",src='omg1.png')),
-                    tags$li(class="middle", img(class="big-dot", src='dot.png')),
-                    
-                    tags$li(img(class="small",src='chart.png'))
-                    
-                  )))
-                )
+                # 
+                # tags$div(
+                #   tags$div(class="left down",actionButton("tab21", "Previous")),
+                #   tags$div(class="right down",actionButton("tab22", "Next")),
+                #   tags$div(class="center", tags$ul(class="asdf",list(
+                #     tags$li(img(class="small",src='table.png')),
+                #     tags$li(class="middle", img(class="big-dot", src='dot.png')),
+                #     tags$li(img(class="small",src='options-2.png')),
+                #     tags$li(class="middle", img(class="big-dot", src='dot.png')),
+                #     
+                #     tags$li(img(class="small",src='omg1.png')),
+                #     tags$li(class="middle", img(class="big-dot", src='dot.png')),
+                #     
+                #     tags$li(img(class="small",src='chart.png'))
+                #     
+                #   )))
+                # )
               
            ),
 
-           tabPanel("Modelling",
-                    tags$div(
-                      tags$div(class="left down",actionButton("tab31", "Previous")),
-                      tags$div(class="right down", actionButton("tab32", "Next")),
-                      tags$div(class="center", tags$ul(class="asdf",list(
-                        tags$li(img(class="small",src='table.png')),
-                        tags$li(class="middle", img(class="big-dot", src='dot.png')),
-                        tags$li(img(class="small",src='options.png')),
-                        tags$li(class="middle", img(class="big-dot", src='dot.png')),
-                        
-                        tags$li(img(class="small",src='omg.png')),
-                        tags$li(class="middle", img(class="big-dot", src='dot.png')),
-                        
-                        tags$li(img(class="small",src='chart.png'))
-                        
-                      )))
-                    )
+           tabPanel("Modelling"
+                    # tags$div(
+                    #   tags$div(class="left down",actionButton("tab31", "Previous")),
+                    #   tags$div(class="right down", actionButton("tab32", "Next")),
+                    #   tags$div(class="center", tags$ul(class="asdf",list(
+                    #     tags$li(img(class="small",src='table.png')),
+                    #     tags$li(class="middle", img(class="big-dot", src='dot.png')),
+                    #     tags$li(img(class="small",src='options.png')),
+                    #     tags$li(class="middle", img(class="big-dot", src='dot.png')),
+                    #     
+                    #     tags$li(img(class="small",src='omg.png')),
+                    #     tags$li(class="middle", img(class="big-dot", src='dot.png')),
+                    #     
+                    #     tags$li(img(class="small",src='chart.png'))
+                    #     
+                    #   )))
+                    # )
                     
            ),
            
-           tabPanel("Results",p("This is tab 4"),
-                    
-            tags$div(
-              tags$div(class="left down", actionButton("tab41", "Previous")),
-              tags$div(class="center", tags$ul(class="asdf",list(
-                tags$li(img(class="small",src='table.png')),
-                tags$li(class="middle", img(class="big-dot", src='dot.png')),
-                tags$li(img(class="small",src='options.png')),
-                tags$li(class="middle", img(class="big-dot", src='dot.png')),
-                
-                tags$li(img(class="small",src='omg1.png')),
-                tags$li(class="middle", img(class="big-dot", src='dot.png')),
-                
-                tags$li(img(class="small",src='chart-active.png'))
-               
-              )))
-            )
+           tabPanel("Results",p("This is tab 4")
+            #         
+            # tags$div(
+            #   tags$div(class="left down", actionButton("tab41", "Previous")),
+            #   tags$div(class="center", tags$ul(class="asdf",list(
+            #     tags$li(img(class="small",src='table.png')),
+            #     tags$li(class="middle", img(class="big-dot", src='dot.png')),
+            #     tags$li(img(class="small",src='options.png')),
+            #     tags$li(class="middle", img(class="big-dot", src='dot.png')),
+            #     
+            #     tags$li(img(class="small",src='omg1.png')),
+            #     tags$li(class="middle", img(class="big-dot", src='dot.png')),
+            #     
+            #     tags$li(img(class="small",src='chart-active.png'))
+            #    
+            #   )))
+            # )
 
 
            )
