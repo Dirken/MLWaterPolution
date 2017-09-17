@@ -48,7 +48,7 @@ navbarPage(title="Fecal Matter predictor",
                     
                     HTML("<br>"),
                     mainPanel(
-                      rHandsontableOutput("hot")
+                      column(12,rHandsontableOutput("hot"))
                     ),
 
                     HTML("<br>"),

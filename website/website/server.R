@@ -88,7 +88,7 @@ shinyServer(function(input, output,session) {
   })
   
   
-  output$hot <-renderRHandsontable({rhandsontable(Dataset())})
+  output$hot <-renderRHandsontable({rhandsontable(Dataset(),height = 450)})
 
 })
   
