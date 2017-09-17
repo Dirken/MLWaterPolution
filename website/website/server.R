@@ -1,3 +1,17 @@
+# output$contents <- renderTable({
+#   inFile <- input$file1
+#   
+#   if(is.null(inFile))
+#     return(NULL)
+#   
+#   ext <- tools::file_ext(inFile$name)
+#   file.rename(inFile$datapath,
+#               paste(inFile$datapath, ext, sep="."))
+#   read_excel(paste(inFile$datapath, ext, sep="."), 1)
+# })
+
+
+
 
 shinyServer(function(input, output,session) {
 
@@ -19,10 +33,10 @@ shinyServer(function(input, output,session) {
     updateTabsetPanel(session, "inTabset", selected = "Results")
   })
   
-  
   observeEvent(input$tab41, {
     updateTabsetPanel(session, "inTabset", selected = "Modelling")
   })
+  
   ### Argument names:
   ArgNames <- reactive({
     Names <- names(formals(input$readFunction)[-1])
@@ -73,49 +87,8 @@ shinyServer(function(input, output,session) {
     return(Dataset)
   })
   
-  output$table <- renderD3tf({
-    
-    # Define table properties. See http://tablefilter.free.fr/doc.php
-    # for a complete reference
-    tableProps <- list(
-      btn_reset = TRUE,
-      sort = TRUE,
-      sort_config = list(
-        # alphabetic sorting for the row names column, numeric for all other columns
-        sort_types = c("String", rep("Number", ncol(Dataset())))
-      )
-    );
-    
-    d3tf(Dataset(),
-         tableProps = tableProps,
-         extensions = list(
-           list(name = "sort")
-           ,
-           list( name = "colsVisibility",
-                 at_start =  c(8, 9, 10, 11),
-                 text = 'Hide columns: ',
-                 enable_tick_all =  TRUE
-           ),
-           list( name = "filtersVisibility",
-                 visible_at_start =  TRUE)
-         ),
-         showRowNames = TRUE,
-         filterInput = TRUE,
-         edit = TRUE,
-         selectableRows = "multi",
-         selectableRowsClass = "info",
-         tableStyle = "table table-bordered");
-  })
   
-  
-  ### Download csv
-  output$downloadSave <- downloadHandler(
-    filename = "Rdata.csv",
-    content = function(con) {
-      assign(input$name, Dataset()[,input$vars,drop=FALSE])
-      save(list=input$name, file=con)
-    },
-    contentType = "text/csv"
-  )
-  
+  output$hot <-renderRHandsontable({rhandsontable(Dataset())})
+
 })
+  
