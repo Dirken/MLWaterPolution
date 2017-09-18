@@ -7,7 +7,7 @@ navbarPage(title="Fecal Matter predictor",
                                          draggable = TRUE, left = "auto", right = 20, bottom = "auto",
                                          width = 250, height = "auto", 
                                          HTML('<button data-toggle="collapse" data-target="#demo"> <span class="glyphicon-class"></span></button>'),
-                                         tags$div(id = 'demo',  class="collapse", list(                                         
+                                         tags$div(id = 'demo',  class="collapse in", list(                                         
                                            selectInput("readFunction", "Format to read", c(
                                              # Base R:
                                              "read.table",
@@ -43,13 +43,16 @@ navbarPage(title="Fecal Matter predictor",
                                            
                                            # Upload data:
                                            fileInput("file", "Browse file"),
-                                           downloadButton('downloadData', 'Download')))
+                                           
+                                           htmlOutput("columnOut"),
+                                           downloadButton('downloadData', 'Download')
+                                      ))
 
      
                       
                       ),
                       br(),
-                      htmlOutput("columnOut"),
+                      
                       mainPanel(width = 12,
 
                                textInput("searchId", "Search", "Search"),
