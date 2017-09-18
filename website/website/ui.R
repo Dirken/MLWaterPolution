@@ -49,12 +49,13 @@ navbarPage(title="Fecal Matter predictor",
                       
                       ),
                       br(),
-                      mainPanel(
-                        
-                        column(12,
+                      htmlOutput("columnOut"),
+                      mainPanel(width = 12,
+
                                textInput("searchId", "Search", "Search"),
-                               rHandsontableOutput("hot"))
+                               rHandsontableOutput("hot")
                       ),
+                        
                     br()
                     # column(width = 12,
                     #        tags$div(

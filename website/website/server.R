@@ -67,6 +67,10 @@ shinyServer(function(input, output,session) {
     }
   })
   
+  output$columnOut <- renderUI(
+    selectizeInput("columnOuput", "Display", colnames(Dataset()), selected = colnames(Dataset()), multiple = TRUE)
+    )
+  
   ### Data import:
   Dataset <- reactive({
     if (is.null(input$file)) {
