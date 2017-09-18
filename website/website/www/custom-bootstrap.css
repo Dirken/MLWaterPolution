@@ -154,3 +154,7 @@
   opacity: 0.95;
   transition-delay: 0;
 }
+
+#columnOut{
+  margin-top: -12%;
+}
