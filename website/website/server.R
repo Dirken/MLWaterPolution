@@ -85,30 +85,18 @@ shinyServer(function(input, output,session) {
         write.csv(Dataset(), con)
       }
   )
-
-
-
- 
-
-
   
+  
+
+
+
+
   output$hot <-renderRHandsontable({rhandsontable(Dataset(),height = 600)%>%   
-    hot_table( columnSorting = TRUE,highlightCol = TRUE, highlightRow = TRUE, search = TRUE) %>% 
-    hot_context_menu(
-      customOpts = list(
-        search = list(name = "Search",
-                      callback = htmlwidgets::JS(
-                        "function (key, options) {
-                         var aux = document.getElementById('searchId').value;
-                         var srch = prompt(Search);
-                         console.log(this);
-                         this.search.query(aux);
-                         this.render();
-                       }"))))
-    
+      hot_table( columnSorting = TRUE,highlightCol = TRUE, highlightRow = TRUE, search = TRUE)
 
   })
 
+  
   
 })
   

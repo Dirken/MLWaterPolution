@@ -1,7 +1,20 @@
 library(leaflet)
 
 
+js_search <- "
+$(document).ready(setTimeout(function() {
+  document.getElementById('searchId').onchange = function(e){
+    var hot_instance = HTMLWidgets.getInstance(hot).hot
+    console.log('hola')
+    var aux = document.getElementById('searchId').value;
+    hot_instance.search.query(aux);
+    hot_instance.render();
+  }
+}))
+"
+
 navbarPage(title="Fecal Matter predictor",
+           tags$head(tags$script(HTML(js_search))),
            tabsetPanel(id = "inTabset",
                   tabPanel("Table",
                            absolutePanel(id = "controls", class = "panel panel-default", fixed = TRUE,
@@ -87,6 +100,8 @@ navbarPage(title="Fecal Matter predictor",
                 radioButtons("human", label = "Is it a human source?", choices = list("Yes" = 1, "No" = 2), 
                              selected = 1, inline = TRUE),
                 ##choices animals.
+                # radioButtons("sources", label = "Which sources you want to predict?", choices = list("Pig" = 1, "Cow" = 2, "Poultry" = 3, ""), 
+                #              selected = 1, inline = TRUE)
                 
                 ##grafica: aged+diluted, point source, etc
                 
