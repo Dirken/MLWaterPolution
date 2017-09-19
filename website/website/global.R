@@ -7,4 +7,4 @@ library(rhandsontable)
 #library(DT)
 #library(shinydashboard)
 library(leaflet)
-
+library("shinyjs")

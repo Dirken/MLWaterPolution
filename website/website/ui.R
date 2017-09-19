@@ -1,5 +1,6 @@
 library(leaflet)
 
+
 navbarPage(title="Fecal Matter predictor",
            tabsetPanel(id = "inTabset",
                   tabPanel("Table",
@@ -160,7 +161,16 @@ navbarPage(title="Fecal Matter predictor",
           #icon-table,  
           #icon-stats, icon-charts, icon-pie-chart
            
-            tags$footer(class="web", tags$p(class="right", HTML("Developed by Ricard Meyerhofer Parra")))
+            tags$footer(class="web", list(tags$p(HTML("<b>Developed by 
+                                                      <a style='color: white;' href='https://github.com/Dirken' 
+                                                      target='_blank'>Ricard Meyerhofer Parra</a>
+                                                      <b>"),  
+                                                 img(class="right ub", src='logo_ub.png'), 
+                                                 img(class="right upc", src='logoUPCblau-complet.png')
+                                                 )
+                                          )
+                        )
+          
+          
           
 )
-

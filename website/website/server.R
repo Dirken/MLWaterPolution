@@ -1,18 +1,3 @@
-# output$contents <- renderTable({
-#   inFile <- input$file1
-#   
-#   if(is.null(inFile))
-#     return(NULL)
-#   
-#   ext <- tools::file_ext(inFile$name)
-#   file.rename(inFile$datapath,
-#               paste(inFile$datapath, ext, sep="."))
-#   read_excel(paste(inFile$datapath, ext, sep="."), 1)
-# })
-
-
-
-
 shinyServer(function(input, output,session) {
 
   
@@ -92,37 +77,40 @@ shinyServer(function(input, output,session) {
   })
   
   
+  output$downloadData <- downloadHandler(
+      filename = function() {
+        paste('data', '.csv', sep='')
+      },
+      content = function(con) {
+        write.csv(Dataset(), con)
+      }
+  )
+
+
+
+ 
+
+
+  
   output$hot <-renderRHandsontable({rhandsontable(Dataset(),height = 600)%>%   
-      hot_table( columnSorting = TRUE,highlightCol = TRUE, highlightRow = TRUE) %>% 
+    hot_table( columnSorting = TRUE,highlightCol = TRUE, highlightRow = TRUE, search = TRUE) %>% 
     hot_context_menu(
-      customOpts = 
-      list(
-        csv = list(name = "Download to CSV",
-                   callback = htmlwidgets::JS(
-                     "function (key, options) {
-                     var csv = csvString(this);
-                     
-                     var link = document.createElement('a');
-                     link.setAttribute('href', 'data:text/plain;charset=utf-8,' +
-                     encodeURIComponent(csv));
-                     link.setAttribute('download', 'data.csv');
-                     
-                     document.body.appendChild(link);
-                     link.click();
-                     document.body.removeChild(link);
-    }")),
+      customOpts = list(
         search = list(name = "Search",
                       callback = htmlwidgets::JS(
                         "function (key, options) {
-                         var srch = prompt('Search criteria');
-
-                         this.search.query(srch);
+                         var aux = document.getElementById('searchId').value;
+                         var srch = prompt(Search);
+                         console.log(this);
+                         this.search.query(aux);
                          this.render();
-                       }"))
-        )
-      )})
-
+                       }"))))
     
+
+  })
+
   
 })
   
+
+
