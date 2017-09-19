@@ -114,8 +114,9 @@ navbarPage(title="Fecal Matter predictor",
                       radioButtons("mollecular", label = "Season", choices = list("Summer" = 1, "Winter" = 2), 
                                    selected = 1, inline = TRUE),
                       
-                      selectInput("persist", "Use one persistance ", 
-                                  choices=list.files('/c/Users/Meyerhofer/Downloads/UNI/MLWaterPolution/given/persist')),
+                      selectInput("ws", "Worksheet",
+                                  choices = c("Africa", "Americas", "Asia",
+                                              "Europe", "Oceania")),
                       fileInput("persist2", "Use yours"),
                       
 
@@ -129,7 +130,7 @@ navbarPage(title="Fecal Matter predictor",
                     width = 10,                  
                     plotOutput("seasonPlot"),
                     rHandsontableOutput("hot2")
-)
+                  )
                 ),
                       
                 
@@ -157,7 +158,7 @@ navbarPage(title="Fecal Matter predictor",
            tabPanel("Modelling",
                     # tags$div(
                       tags$div(class="left down",actionButton("tab31", "Previous")),
-                      tags$div(class="right down", actionButton("tab32", "Next"))
+                      tags$div(class="right down", actionButton("tab32", "Next")),
                     #   tags$div(class="center", tags$ul(class="asdf",list(
                     #     tags$li(img(class="small",src='table.png')),
                     #     tags$li(class="middle", img(class="big-dot", src='dot.png')),
@@ -171,6 +172,39 @@ navbarPage(title="Fecal Matter predictor",
                     #     
                     #   )))
                     # )
+                    
+                    sidebarLayout(
+                      sidebarPanel(
+                        h3(textOutput("greeting")),
+                        br(),
+                        wellPanel(uiOutput("currentUser")),
+                        br(),
+                        uiOutput("loginButton"),
+                        br(),
+                        uiOutput("selectSheet"),
+                        br(),
+                        uiOutput("logoutButton"),
+                        br(),
+                        ## Make this link more specific when final name and location settles
+                        h5(a("Click Here to See Code on Github",
+                             href="https://github.com/jennybc/googlesheets/tree/master/inst/shiny-examples",
+                             target="_blank"))
+                      ),
+                      mainPanel(
+                        tabsetPanel(id = "panel",
+                                    tabPanel("All Sheets",
+                                             DT::dataTableOutput("listSheets")),
+                                    tabPanel("Sheet Info",
+                                             h2("Spreadsheet Info"),
+                                             DT::dataTableOutput("sheetInfo"),
+                                             h3("Worksheets contained:"),
+                                             DT::dataTableOutput("sheetWsInfo")),
+                                    tabPanel("Sheet Inspection",
+                                             uiOutput("selectWs"),
+                                             plotOutput("plotSheet"))
+                        )
+                      )
+                    )
                     
            ),
            
