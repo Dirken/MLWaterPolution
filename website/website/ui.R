@@ -99,10 +99,11 @@ navbarPage(title="Fecal Matter predictor",
                 tags$h2("Prediction variables"),
                 radioButtons("human", label = "Is it a human source?", choices = list("Yes" = 1, "No" = 2), 
                              selected = 1, inline = TRUE),
-                ##choices animals.
-                # radioButtons("sources", label = "Which sources you want to predict?", choices = list("Pig" = 1, "Cow" = 2, "Poultry" = 3, ""), 
-                #              selected = 1, inline = TRUE)
+                ##choose animals.
+                selectizeInput("sources", "Select the possible sources", 
+                               list('Human', 'Cow', 'Poultry', 'Pig'), multiple = TRUE),
                 
+
                 ##grafica: aged+diluted, point source, etc
                 
                 radioButtons("mollecular", label = "Do you want to use only mollecular variables?", choices = list("Yes" = 1, "No" = 2), 
