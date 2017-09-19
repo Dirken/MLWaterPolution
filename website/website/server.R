@@ -96,7 +96,16 @@ shinyServer(function(input, output,session) {
 
   })
 
-  
+  output$seasonPlot <- renderPlot({
+    
+    x    <- faithful$waiting
+    diluted <- seq(min(x), max(x), length.out = input$diluted + 1)
+    
+    hist(x, breaks = diluted, col = "#75AADB", border = "white",
+         xlab = "Waiting time to next eruption (in mins)",
+         main = "Histogram of waiting times")
+    
+  })
   
 })
   

@@ -73,7 +73,6 @@ navbarPage(title="Fecal Matter predictor",
                                rHandsontableOutput("hot")
                       ),
                         
-                    br()
                     # column(width = 12,
                     #        tags$div(
                     #          tags$div(class="center", tags$ul(class="asdf",list(
@@ -89,7 +88,7 @@ navbarPage(title="Fecal Matter predictor",
                     #            
                     #          ))),
                     #          HTML("<br>"),
-                    #          tags$div(class="right down",actionButton("tab1", "Next"))
+                             tags$div(class="right down",actionButton("tab1", "Next"))
                     #          
                     #        ))
 
@@ -97,22 +96,48 @@ navbarPage(title="Fecal Matter predictor",
            tabPanel("Scenario",
                 
                 tags$h2("Prediction variables"),
-                radioButtons("human", label = "Is it a human source?", choices = list("Yes" = 1, "No" = 2), 
-                             selected = 1, inline = TRUE),
-                ##choose animals.
-                selectizeInput("sources", "Select the possible sources", 
-                               list('Human', 'Cow', 'Poultry', 'Pig'), multiple = TRUE),
-                
+                br(),
+                sidebarLayout(
+                  sidebarPanel(width = 2,
+                      radioButtons("human", label = "Is it a human source?", choices = list("Yes" = 1, "No" = 2), 
+                                   selected = 1, inline = TRUE),
+                      ##choose animals.
+                      selectizeInput("sources", "Sources", 
+                                     list('Human', 'Cow', 'Poultry', 'Pig'), multiple = TRUE),
+                      
+      
+                      ##grafica: aged+diluted, point source, etc
+                      
+                      radioButtons("mollecular", label = "Mollecular variables?", choices = list("Yes" = 1, "No" = 2), 
+                                   selected = 1, inline = TRUE),
+                      
+                      radioButtons("mollecular", label = "Season", choices = list("Summer" = 1, "Winter" = 2), 
+                                   selected = 1, inline = TRUE),
+                      
+                      selectInput("persist", "Use one persistance ", 
+                                  choices=list.files('/c/Users/Meyerhofer/Downloads/UNI/MLWaterPolution/given/persist')),
+                      fileInput("persist2", "Use yours"),
+                      
 
-                ##grafica: aged+diluted, point source, etc
+                      sliderInput(inputId = "diluted",
+                                  label = "Diluted",
+                                  min = 1,
+                                  max = 50,
+                                  value = 30)
+                  ),
+                  mainPanel(    
+                    width = 10,                  
+                    plotOutput("seasonPlot"),
+                    rHandsontableOutput("hot2")
+)
+                ),
+                      
                 
-                radioButtons("mollecular", label = "Do you want to use only mollecular variables?", choices = list("Yes" = 1, "No" = 2), 
-                             selected = 1, inline = TRUE)
                 
                 # 
                 # tags$div(
-                #   tags$div(class="left down",actionButton("tab21", "Previous")),
-                #   tags$div(class="right down",actionButton("tab22", "Next")),
+                  tags$div(class="left down",actionButton("tab21", "Previous")),
+                   tags$div(class="right down",actionButton("tab22", "Next"))
                 #   tags$div(class="center", tags$ul(class="asdf",list(
                 #     tags$li(img(class="small",src='table.png')),
                 #     tags$li(class="middle", img(class="big-dot", src='dot.png')),
@@ -129,10 +154,10 @@ navbarPage(title="Fecal Matter predictor",
               
            ),
 
-           tabPanel("Modelling"
+           tabPanel("Modelling",
                     # tags$div(
-                    #   tags$div(class="left down",actionButton("tab31", "Previous")),
-                    #   tags$div(class="right down", actionButton("tab32", "Next")),
+                      tags$div(class="left down",actionButton("tab31", "Previous")),
+                      tags$div(class="right down", actionButton("tab32", "Next"))
                     #   tags$div(class="center", tags$ul(class="asdf",list(
                     #     tags$li(img(class="small",src='table.png')),
                     #     tags$li(class="middle", img(class="big-dot", src='dot.png')),
@@ -149,10 +174,10 @@ navbarPage(title="Fecal Matter predictor",
                     
            ),
            
-           tabPanel("Results",p("This is tab 4")
+           tabPanel("Results",p("This is tab 4"),
             #         
             # tags$div(
-            #   tags$div(class="left down", actionButton("tab41", "Previous")),
+              tags$div(class="left down", actionButton("tab41", "Previous"))
             #   tags$div(class="center", tags$ul(class="asdf",list(
             #     tags$li(img(class="small",src='table.png')),
             #     tags$li(class="middle", img(class="big-dot", src='dot.png')),
