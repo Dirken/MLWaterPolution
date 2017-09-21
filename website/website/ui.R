@@ -13,6 +13,9 @@ $(document).ready(setTimeout(function() {
 }))
 "
 
+js_hid <- "
+"
+
 navbarPage(title="Fecal Matter predictor",
            tags$head(tags$script(HTML(js_search))),
            tabsetPanel(id = "inTabset",
@@ -59,6 +62,7 @@ navbarPage(title="Fecal Matter predictor",
                                            fileInput("file", "Browse file"),
                                            
                                            htmlOutput("columnOut"),
+                                           
                                            downloadButton('downloadData', 'Download')
                                       ))
 
@@ -72,6 +76,7 @@ navbarPage(title="Fecal Matter predictor",
                                textInput("searchId", "Search", "Search"),
                                rHandsontableOutput("hot")
                       ),
+                      actionButton("show", "Show modal dialog"),
                         
                     # column(width = 12,
                     #        tags$div(
@@ -158,7 +163,7 @@ navbarPage(title="Fecal Matter predictor",
            tabPanel("Modelling",
                     # tags$div(
                       tags$div(class="left down",actionButton("tab31", "Previous")),
-                      tags$div(class="right down", actionButton("tab32", "Next")),
+                      tags$div(class="right down", actionButton("tab32", "Next"))
                     #   tags$div(class="center", tags$ul(class="asdf",list(
                     #     tags$li(img(class="small",src='table.png')),
                     #     tags$li(class="middle", img(class="big-dot", src='dot.png')),

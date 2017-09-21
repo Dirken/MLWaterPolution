@@ -55,6 +55,12 @@ shinyServer(function(input, output,session) {
     selectizeInput("columnOuput", "Display", colnames(Dataset()), selected = colnames(Dataset()), multiple = TRUE)
     )
   
+    columnOut = reactive({
+      Dataset = Dataset[colnames(Dataset())]
+    })
+
+  
+  
   ### Data import:
   Dataset <- reactive({
     if (is.null(input$file)) {
@@ -85,15 +91,24 @@ shinyServer(function(input, output,session) {
       }
   )
   
+  observeEvent(input$show, {
+    showModal(modalDialog(
+      title = "Important message",
+      "This is an important message!",
+      easyClose = TRUE
+    ))
+  })
   
 
-
+  
 
 
   output$hot <-renderRHandsontable({rhandsontable(Dataset(),height = 600)%>%   
       hot_table( columnSorting = TRUE,highlightCol = TRUE, highlightRow = TRUE, search = TRUE)
 
   })
+  
+  
 
   output$seasonPlot <- renderPlot({
     
