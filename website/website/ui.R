@@ -58,6 +58,7 @@ navbarPage(title= "Fecal Matter predictor",
                       mainPanel(width = 10,
                                # textInput("searchId", "Search", "Search"),
                                DT::dataTableOutput("data")
+                               
                       ),
 
                       tags$div(class="right down",actionButton("tab1", "Next"))

@@ -87,9 +87,9 @@ shinyServer(function(input, output,session) {
     id <<- showNotification(paste("Succesfully loaded"), duration = 5, type="message")
     
     newrow <- Dataset[1:1,] 
-    newrow <- shinyInput(actionButton, 5, 'button_', label = "Fire", onclick = 'Shiny.onInputChange(\"select_button\",  this.id)' )
+    newrow <- shinyInput(actionButton, 5, 'button_', label = "Season", onclick = 'Shiny.onInputChange(\"show\",  this.id)' )
 
-     return(insertRow2(Dataset, newrow ,1))
+    return(insertRow2(Dataset, newrow ,1))
   })
   
   insertRow2 <- function(existingDF, newrow, r) {
