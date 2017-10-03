@@ -60,7 +60,13 @@ shinyServer(function(input, output,session) {
   })
   
   
-  
+  shinyInput <- function(FUN, len, id, ...) {
+    inputs <- character(len)
+    for (i in seq_len(len)) {
+      inputs[i] <- as.character(FUN(paste0(id, i), ...))
+    }
+    inputs
+  }
   ### Data import:
   Dataset <- reactive({
     if (is.null(input$file)) {
@@ -80,47 +86,20 @@ shinyServer(function(input, output,session) {
     Dataset <- as.data.frame(do.call(input$readFunction,c(list(input$file$datapath),argList)))
     id <<- showNotification(paste("Succesfully loaded"), duration = 5, type="message")
     
-    
     newrow <- Dataset[1:1,] 
-    newrow <-    HTML("<button type='button' class='btn btn-info btn-lg' data-toggle='modal' data-target='#dataModal'>Open Modal</button>")
-    dataModal <- function(failed = FALSE) {
-      modalDialog(
-        textInput("dataset", "Choose data set",
-                  placeholder = 'Try "mtcars" or "abc"'
-        ),
-        span('(Try the name of a valid data object like "mtcars", ',
-             'then a name of a non-existent object like "abc")'),
-        if (failed)
-          div(tags$b("Invalid name of data object", style = "color: red;")),
-        
-        footer = tagList(
-          modalButton("Cancel"),
-          actionButton("ok", "OK")
-        )
-      )
-    }
-    return(insertRow2(Dataset, newrow ,1))
+    newrow <- shinyInput(actionButton, 5, 'button_', label = "Fire", onclick = 'Shiny.onInputChange(\"select_button\",  this.id)' )
+
+     return(insertRow2(Dataset, newrow ,1))
   })
   
   insertRow2 <- function(existingDF, newrow, r) {
     existingDF <- rbind(existingDF,newrow)
     existingDF <- existingDF[order(c(1:(nrow(existingDF)-1),r-0.5)),]
     row.names(existingDF) <- 1:nrow(existingDF)
-    return(existingDF)  
+    return(existingDF)
   }
   
 
-  output$downloadData <- downloadHandler(
-    filename = function() {
-      paste('data', '.csv', sep='')
-    },
-    content = function(con) {
-      write.csv(Dataset(), con)
-      id <<- showNotification(paste("Downloaded data"), duration = 5,  type="message")
-    }  
-    
-
-  )
   
   observeEvent(input$show, {
     showModal(modalDialog(
@@ -132,21 +111,21 @@ shinyServer(function(input, output,session) {
   
   
   
-  
-  
-  output$hot <-renderRHandsontable({rhandsontable(Dataset(),height = 600)%>%   
-      hot_table( columnSorting = TRUE,highlightCol = TRUE, highlightRow = TRUE, search = TRUE)%>%
-      hot_rows(fixedRowsTop = 1)%>%
-      hot_cols(renderer = "html") %>%
-      hot_cols(renderer = htmlwidgets::JS("safeHtmlRenderer"))
-      #hot_col(1, colWidths = 0.1)
-      
-    
+  output$data <- DT::renderDataTable(
+    Dataset(), server = FALSE, escape = FALSE, selection = 'none',extensions = "Buttons",
+    filter = list(position = 'top', clear = FALSE),
+    options = list(
+      regex = TRUE,
+      searchHighlight = TRUE,
+      search = list(regex = TRUE),
+      columnDefs = list(list(className = 'dt-center', targets = 5)),
+      pageLength = 10,
+      lengthMenu = c(5, 10, 15, 20),
+      dom = 'Bfrtip',
+      buttons = c('csv', 'excel', I('colvis'))
+    ))
 
-  })
-  
-  
-
+                     
   
 })
 

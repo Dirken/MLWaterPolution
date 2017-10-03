@@ -1,7 +1,6 @@
 library(leaflet)
 
 navbarPage(title= "Fecal Matter predictor",
-           tags$head(tags$script(src="js/hiding.js")),
            tags$head(tags$script(src="js/table.js")),
            tabsetPanel(id = "inTabset",
                   tabPanel("Table",
@@ -46,24 +45,19 @@ navbarPage(title= "Fecal Matter predictor",
                                            # Upload data:
                                            fileInput("file", "Browse file"),
                                            
-                                           #htmlOutput("columnOut"),
                                           #checkboxGroupInput("columns","Select Columns",choices=colnames(Dataset()),inline = T),
                                           radioButtons("mollecular", label = "Mollecular variables?", choices = list("Yes" = 1, "No" = 2), 
-                                                       selected = 1, inline = TRUE),
-                                          
-                                          htmlOutput("columnOut"),
-                                           downloadButton('downloadData', 'Download')
-                                      ))
+                                                       selected = 1, inline = TRUE)
+                                    ))
 
      
                       
                       ),
                       br(),
                       
-                      mainPanel(width = 12,
-
-                               textInput("searchId", "Search", "Search"),
-                               rHandsontableOutput("hot")
+                      mainPanel(width = 10,
+                               # textInput("searchId", "Search", "Search"),
+                               DT::dataTableOutput("data")
                       ),
 
                       tags$div(class="right down",actionButton("tab1", "Next"))
@@ -72,27 +66,25 @@ navbarPage(title= "Fecal Matter predictor",
            ),
            tabPanel("Scenario",
                 
-                tags$h2("Prediction variables"),
-                br(),
-                sidebarLayout(
-                  sidebarPanel(width = 2,
-                      radioButtons("human", label = "Is it a human source?", choices = list("Yes" = 1, "No" = 2), 
-                                   selected = 1, inline = TRUE),
-                      ##choose animals.
-                      selectizeInput("sources", "Sources", 
-                                     list('Human', 'Cow', 'Poultry', 'Pig'), multiple = TRUE)
-                      
-                      
-                      
-                      
-
-                  ),
-                  mainPanel(    
-                    width = 10,                  
-                    plotOutput("seasonPlot"),
-                    rHandsontableOutput("hot2")
-                  )
-                ),
+                # tags$h2("Prediction variables"),
+                # br(),
+                # sidebarLayout(
+                #   sidebarPanel(width = 2,
+                #       radioButtons("human", label = "Is it a human source?", choices = list("Yes" = 1, "No" = 2), 
+                #                    selected = 1, inline = TRUE)
+                # 
+                #       
+                #       
+                #       
+                #       
+                # 
+                #   ),
+                #   mainPanel(    
+                #     width = 10,                  
+                #     plotOutput("seasonPlot"),
+                #     rHandsontableOutput("hot2")
+                #   )
+                # ),
 
                   tags$div(class="left down",actionButton("tab21", "Previous")),
                    tags$div(class="right down",actionButton("tab22", "Next"))
