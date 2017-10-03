@@ -1,23 +1,8 @@
 library(leaflet)
 
-
-js_search <- "
-$(document).ready(setTimeout(function() {
-  document.getElementById('searchId').onchange = function(e){
-    var hot_instance = HTMLWidgets.getInstance(hot).hot
-    console.log('hola')
-    var aux = document.getElementById('searchId').value;
-    hot_instance.search.query(aux);
-    hot_instance.render();
-  }
-}))
-"
-
-js_hid <- "
-"
-
-navbarPage(title="Fecal Matter predictor",
-           tags$head(tags$script(HTML(js_search))),
+navbarPage(title= "Fecal Matter predictor",
+           tags$head(tags$script(src="js/hiding.js")),
+           tags$head(tags$script(src="js/table.js")),
            tabsetPanel(id = "inTabset",
                   tabPanel("Table",
                            absolutePanel(id = "controls", class = "panel panel-default", fixed = TRUE,
@@ -61,8 +46,12 @@ navbarPage(title="Fecal Matter predictor",
                                            # Upload data:
                                            fileInput("file", "Browse file"),
                                            
-                                           htmlOutput("columnOut"),
-                                           
+                                           #htmlOutput("columnOut"),
+                                          #checkboxGroupInput("columns","Select Columns",choices=colnames(Dataset()),inline = T),
+                                          radioButtons("mollecular", label = "Mollecular variables?", choices = list("Yes" = 1, "No" = 2), 
+                                                       selected = 1, inline = TRUE),
+                                          
+                                          htmlOutput("columnOut"),
                                            downloadButton('downloadData', 'Download')
                                       ))
 
@@ -76,26 +65,9 @@ navbarPage(title="Fecal Matter predictor",
                                textInput("searchId", "Search", "Search"),
                                rHandsontableOutput("hot")
                       ),
-                      actionButton("show", "Show modal dialog"),
-                        
-                    # column(width = 12,
-                    #        tags$div(
-                    #          tags$div(class="center", tags$ul(class="asdf",list(
-                    #            tags$li(img(class="small",src='table-active.png')),
-                    #            tags$li(class="middle", img(class="big-dot", src='dot.png')),
-                    #            tags$li(img(class="small",src='options.png')),
-                    #            tags$li(class="middle", img(class="big-dot", src='dot.png')),
-                    #            
-                    #            tags$li(img(class="small",src='omg1.png')),
-                    #            tags$li(class="middle", img(class="big-dot", src='dot.png')),
-                    #            
-                    #            tags$li(img(class="small",src='chart.png'))
-                    #            
-                    #          ))),
-                    #          HTML("<br>"),
-                             tags$div(class="right down",actionButton("tab1", "Next"))
-                    #          
-                    #        ))
+
+                      tags$div(class="right down",actionButton("tab1", "Next"))
+
 
            ),
            tabPanel("Scenario",
@@ -108,28 +80,12 @@ navbarPage(title="Fecal Matter predictor",
                                    selected = 1, inline = TRUE),
                       ##choose animals.
                       selectizeInput("sources", "Sources", 
-                                     list('Human', 'Cow', 'Poultry', 'Pig'), multiple = TRUE),
+                                     list('Human', 'Cow', 'Poultry', 'Pig'), multiple = TRUE)
                       
-      
-                      ##grafica: aged+diluted, point source, etc
                       
-                      radioButtons("mollecular", label = "Mollecular variables?", choices = list("Yes" = 1, "No" = 2), 
-                                   selected = 1, inline = TRUE),
                       
-                      radioButtons("mollecular", label = "Season", choices = list("Summer" = 1, "Winter" = 2), 
-                                   selected = 1, inline = TRUE),
-                      
-                      selectInput("ws", "Worksheet",
-                                  choices = c("Africa", "Americas", "Asia",
-                                              "Europe", "Oceania")),
-                      fileInput("persist2", "Use yours"),
                       
 
-                      sliderInput(inputId = "diluted",
-                                  label = "Diluted",
-                                  min = 1,
-                                  max = 50,
-                                  value = 30)
                   ),
                   mainPanel(    
                     width = 10,                  
@@ -137,26 +93,10 @@ navbarPage(title="Fecal Matter predictor",
                     rHandsontableOutput("hot2")
                   )
                 ),
-                      
-                
-                
-                # 
-                # tags$div(
+
                   tags$div(class="left down",actionButton("tab21", "Previous")),
                    tags$div(class="right down",actionButton("tab22", "Next"))
-                #   tags$div(class="center", tags$ul(class="asdf",list(
-                #     tags$li(img(class="small",src='table.png')),
-                #     tags$li(class="middle", img(class="big-dot", src='dot.png')),
-                #     tags$li(img(class="small",src='options-2.png')),
-                #     tags$li(class="middle", img(class="big-dot", src='dot.png')),
-                #     
-                #     tags$li(img(class="small",src='omg1.png')),
-                #     tags$li(class="middle", img(class="big-dot", src='dot.png')),
-                #     
-                #     tags$li(img(class="small",src='chart.png'))
-                #     
-                #   )))
-                # )
+
               
            ),
 
@@ -219,7 +159,6 @@ navbarPage(title="Fecal Matter predictor",
                                                  )
                                           )
                         )
-          
           
           
 )
