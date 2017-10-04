@@ -112,17 +112,17 @@ shinyServer(function(input, output,session) {
   })
   
   
-  # output$plot <- reactive({
-  #   file1 = input$file
-  #   print(file1)
-  #   if (is.null(file1)) {
-  #     return(NULL)
-  #   }
-  #   data1 = 
-  #   output$plot <- renderPlot({
-  #     plot(data1[,1],data1[,2])
-  #   })
-  # })
+  output$plot <- reactive({
+    file1 = input$file
+    print(file1)
+    if (is.null(file1)) {
+      return(NULL)
+    }
+    data1 =
+    output$plot <- renderPlot({
+      plot(data1[,1],data1[,2])
+    })
+  })
   
   
   root <- "C:/Users/Meyerhofer/Downloads/UNI/MLWaterPolution/website/website/persist" 
