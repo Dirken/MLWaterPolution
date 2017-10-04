@@ -48,6 +48,7 @@ navbarPage(title= "Fecal Matter predictor",
                                           #checkboxGroupInput("columns","Select Columns",choices=colnames(Dataset()),inline = T),
                                           radioButtons("mollecular", label = "Mollecular variables?", choices = list("Yes" = 1, "No" = 2), 
                                                        selected = 1, inline = TRUE)
+                                          
                                     ))
 
      

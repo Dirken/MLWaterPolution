@@ -103,12 +103,34 @@ shinyServer(function(input, output,session) {
   
   observeEvent(input$show, {
     showModal(modalDialog(
-      title = "Important message",
-      "This is an important message!",
+      title = "Select location:",
+      uiOutput('select.file'),
+      print(input$selec),
+      # plotOutput("plot"),
       easyClose = TRUE
     ))
   })
   
+  
+  # output$plot <- reactive({
+  #   file1 = input$file
+  #   print(file1)
+  #   if (is.null(file1)) {
+  #     return(NULL)
+  #   }
+  #   data1 = 
+  #   output$plot <- renderPlot({
+  #     plot(data1[,1],data1[,2])
+  #   })
+  # })
+  
+  
+  root <- "C:/Users/Meyerhofer/Downloads/UNI/MLWaterPolution/website/website/persist" 
+  
+  output$select.file <-
+    renderUI(selectInput("filename",
+                                label = 'File Name',
+                                choices = list.files(path = file.path(root))))
   
   
   output$data <- DT::renderDataTable(
