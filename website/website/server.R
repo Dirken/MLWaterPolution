@@ -104,8 +104,17 @@ shinyServer(function(input, output,session) {
   observeEvent(input$show, {
     showModal(modalDialog(
       title = "Select location:",
+      uiOutput('select.folder'),
       uiOutput('select.file'),
-      print(input$selec),
+      txt <- reactive({ output$select.folder })
+      print("----------------"),
+      br(),
+      print(file.path(root)),
+      br(),
+      print(updateSelectInput(session, "filename")),
+      br(),
+      print("----------------"),
+      
       # plotOutput("plot"),
       easyClose = TRUE
     ))
@@ -113,8 +122,7 @@ shinyServer(function(input, output,session) {
   
   
   output$plot <- reactive({
-    file1 = input$file
-    print(file1)
+    
     if (is.null(file1)) {
       return(NULL)
     }
@@ -125,24 +133,32 @@ shinyServer(function(input, output,session) {
   })
   
   
-  root <- "C:/Users/Meyerhofer/Downloads/UNI/MLWaterPolution/website/website/persist" 
+  root <- "/home/dirken/MLWaterPolution/website/website/persist" 
   
+  
+  output$select.folder <-renderUI(selectInput(inputId = "folder.name",
+                                              label = 'Location',
+                                              choices = list.files(path = file.path(root))))
   output$select.file <-
     renderUI(selectInput("filename",
-                                label = 'File Name',
-                                choices = list.files(path = file.path(root))))
-  
+                                label = 'Gradient',
+                                choices = list.files(path = file.path(root, input$folder.name))))
+
   
   output$data <- DT::renderDataTable(
     Dataset(), server = FALSE, escape = FALSE, selection = 'none',extensions = "Buttons",
     filter = list(position = 'top', clear = FALSE),
     options = list(
+      scrollX='auto',
+      scrollY='400px',
+      paging = FALSE,
       regex = TRUE,
       searchHighlight = TRUE,
       search = list(regex = TRUE),
       columnDefs = list(list(className = 'dt-center', targets = 5)),
-      pageLength = 10,
-      lengthMenu = c(5, 10, 15, 20),
+      
+      #pageLength = 5,
+      #lengthMenu = c(5, 10, 15, 20),
       dom = 'Bfrtip',
       buttons = c('csv', 'excel', I('colvis'))
     ))

@@ -1,6 +1,6 @@
 library(leaflet)
 
-navbarPage(title= "Fecal Matter predictor",
+navbarPage(title= "ICHNAEA",
            tags$head(tags$script(src="js/table.js")),
            tabsetPanel(id = "inTabset",
                   tabPanel("Table",
@@ -44,9 +44,7 @@ navbarPage(title= "Fecal Matter predictor",
                                            
                                            # Upload data:
                                            fileInput("file", "Browse file"),
-                                           
-                                          #checkboxGroupInput("columns","Select Columns",choices=colnames(Dataset()),inline = T),
-                                          radioButtons("mollecular", label = "Mollecular variables?", choices = list("Yes" = 1, "No" = 2), 
+                                           radioButtons("mollecular", label = "Mollecular variables?", choices = list("Yes" = 1, "No" = 2), 
                                                        selected = 1, inline = TRUE)
                                           
                                     ))
@@ -56,7 +54,7 @@ navbarPage(title= "Fecal Matter predictor",
                       ),
                       br(),
                       
-                      mainPanel(width = 10,
+                      mainPanel(width = 12,
                                # textInput("searchId", "Search", "Search"),
                                DT::dataTableOutput("data")
                                
@@ -137,22 +135,22 @@ navbarPage(title= "Fecal Matter predictor",
 
            )
            ),
-            theme = "custom-bootstrap.css",
+            theme = "custom-bootstrap.css"
            
            
 
           #icon-table,  
           #icon-stats, icon-charts, icon-pie-chart
            
-            tags$footer(class="web", list(tags$p(HTML("<b>Developed by 
-                                                      <a style='color: white;' href='https://github.com/Dirken' 
-                                                      target='_blank'>Ricard Meyerhofer Parra</a>
-                                                      <b>"),  
-                                                 img(class="right ub", src='logo_ub.png'), 
-                                                 img(class="right upc", src='logoUPCblau-complet.png')
-                                                 )
-                                          )
-                        )
-          
+            # tags$footer(class="web", list(tags$p(HTML("<b>Developed by 
+            #                                           <a style='color: white;' href='https://github.com/Dirken' 
+            #                                           target='_blank'>Ricard Meyerhofer Parra</a>
+            #                                           <b>"),  
+            #                                      img(class="right ub", src='logo_ub.png'), 
+            #                                      img(class="right upc", src='logoUPCblau-complet.png')
+            #                                      )
+            #                               )
+            #             )
+            # 
           
 )
