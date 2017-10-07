@@ -1,13 +1,11 @@
 library(leaflet)
 library(shinyBS)
 jsCode <- " shinyjs.filename =
-  	function getFilename(){
-  		$(document).on('shiny:value', function(e) {
-  			if (e.name == 'filename') {  
-        		return document.getElementById('filename').value;
-  			}
-	});
-}"
+  	function (){
+  		$(document).ready(function() {
+        		console.log(document.getElementById('filename').value);
+	    });
+    }"
 
 navbarPage(title= "ICHNAEA",
            tags$head(tags$script(src="js/table.js")),

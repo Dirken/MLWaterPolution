@@ -115,14 +115,16 @@ shinyServer(function(input, output,session) {
   
   
   output$plot <- reactive({
+    print("-------------------")
     
+    document <-read.csv(file.path(root, input$folder.name,input$filename))
     
-    document <-read.csv(js$filename())
-    print(document)
     output$plot <- renderPlot({
-      plot(data1[,1],data1[,2])
+       plot(document[,1],document[,2])
     })
   })
+  
+
   
 
   
@@ -133,6 +135,7 @@ shinyServer(function(input, output,session) {
   output$select.folder <-renderUI(selectInput(inputId = "folder.name",
                                               label = 'Location',
                                               choices = list.files(path = file.path(root))))
+  
   output$select.file <-
     renderUI(selectInput("filename",
                                 label = 'Gradient',
