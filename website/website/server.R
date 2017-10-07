@@ -116,12 +116,9 @@ shinyServer(function(input, output,session) {
   
   output$plot <- reactive({
     
-    print(js$filename())
-    document <- js$filename()
-    print("------------------")
     
-    asdfg<-read.csv(document)
-    print(asdfg)
+    document <-read.csv(js$filename())
+    print(document)
     output$plot <- renderPlot({
       plot(data1[,1],data1[,2])
     })
