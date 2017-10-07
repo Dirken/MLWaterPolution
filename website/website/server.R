@@ -106,10 +106,13 @@ shinyServer(function(input, output,session) {
   observeEvent(input$show, {
     showModal(modalDialog(
       title = "Select location:",
-      uiOutput('select.folder'),
-      uiOutput('select.file'),
-      plotOutput("plot"),
-      easyClose = TRUE
+      sidebarPanel(uiOutput('select.folder'),
+                   uiOutput('select.file')),
+      mainPanel(plotOutput("plot"),
+                easyClose = TRUE
+                )
+      
+      
     ))
   })
   
