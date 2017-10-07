@@ -59,7 +59,7 @@ shinyServer(function(input, output,session) {
     Dataset = Dataset[colnames(Dataset())]
   })
   
-  
+  # This function will create the buttons for the datatable, they will be unique
   shinyInput <- function(FUN, len, id, ...) {
     inputs <- character(len)
     for (i in seq_len(len)) {
@@ -67,6 +67,8 @@ shinyServer(function(input, output,session) {
     }
     inputs
   }
+  
+
   ### Data import:
   Dataset <- reactive({
     if (is.null(input$file)) {
@@ -106,16 +108,7 @@ shinyServer(function(input, output,session) {
       title = "Select location:",
       uiOutput('select.folder'),
       uiOutput('select.file'),
-      txt <- reactive({ output$select.folder })
-      print("----------------"),
-      br(),
-      print(file.path(root)),
-      br(),
-      print(updateSelectInput(session, "filename")),
-      br(),
-      print("----------------"),
-      
-      # plotOutput("plot"),
+      plotOutput("plot"),
       easyClose = TRUE
     ))
   })
@@ -123,17 +116,21 @@ shinyServer(function(input, output,session) {
   
   output$plot <- reactive({
     
-    if (is.null(file1)) {
-      return(NULL)
-    }
-    data1 =
+    print(js$filename())
+    document <- js$filename()
+    print("------------------")
+    
+    asdfg<-read.csv(document)
+    print(asdfg)
     output$plot <- renderPlot({
       plot(data1[,1],data1[,2])
     })
   })
   
+
   
-  root <- "/home/dirken/MLWaterPolution/website/website/persist" 
+  #root <- "/home/dirken/MLWaterPolution/website/website/persist" 
+  root <- "C:/Users/Meyerhofer/Downloads/UNI/MLWaterPolution/website/website/persist" 
   
   
   output$select.folder <-renderUI(selectInput(inputId = "folder.name",

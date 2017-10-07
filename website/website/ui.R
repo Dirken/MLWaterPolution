@@ -1,7 +1,19 @@
 library(leaflet)
+library(shinyBS)
+jsCode <- " 
+  shinyjs.filename = 
+    function getFilename(){
+        $( '#filename' ).change(function() {
+	        return document.getElementById('filename').value;	
+
+      });
+    }"
 
 navbarPage(title= "ICHNAEA",
            tags$head(tags$script(src="js/table.js")),
+           shinyjs::useShinyjs(),
+           extendShinyjs(text = jsCode),
+           
            tabsetPanel(id = "inTabset",
                   tabPanel("Table",
                            absolutePanel(id = "controls", class = "panel panel-default", fixed = TRUE,
@@ -58,6 +70,8 @@ navbarPage(title= "ICHNAEA",
                                # textInput("searchId", "Search", "Search"),
                                DT::dataTableOutput("data")
                                
+
+
                       ),
 
                       tags$div(class="right down",actionButton("tab1", "Next"))
