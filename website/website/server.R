@@ -89,7 +89,7 @@ shinyServer(function(input, output,session) {
     id <<- showNotification(paste("Succesfully loaded"), duration = 5, type="message")
     
     newrow <- Dataset[1:1,] 
-    newrow <- shinyInput(actionButton, 5, 'button_', label = "Season", onclick = 'Shiny.onInputChange(\"show\",  this.id)' )
+    newrow <- shinyInput(actionButton, length(newrow), 'button_', label = "Season", onclick = 'Shiny.onInputChange(\"show\",  this.id)' )
 
     return(insertRow2(Dataset, newrow ,1))
   })
@@ -107,7 +107,9 @@ shinyServer(function(input, output,session) {
     showModal(modalDialog(
       title = "Select location:",
       sidebarPanel(uiOutput('select.folder'),
-                   uiOutput('select.file')),
+                   uiOutput('select.file'),
+                   colnames(Dataset()[input$data_cell_clicked[2]$col])
+                   ),
       mainPanel(plotOutput("plot"),
                 easyClose = TRUE
                 )
@@ -118,16 +120,14 @@ shinyServer(function(input, output,session) {
   
   
   output$plot <- reactive({
-    print("-------------------")
-    
-    document <-read.csv(file.path(root, input$folder.name,input$filename))
+    document <- read.csv(file.path(root, input$folder.name,input$filename))
+   
+
     
     output$plot <- renderPlot({
        plot(document[,1],document[,2])
     })
   })
-  
-
   
 
   
@@ -139,6 +139,11 @@ shinyServer(function(input, output,session) {
                                               label = 'Location',
                                               choices = list.files(path = file.path(root))))
   
+  # allFiles <- list.files(path = file.path(root, input$folder.name))
+  # headerSelectedColumn <- colnames(Dataset()[input$data_cell_clicked[2]$col])
+  # columnFiles <- filter(str_detect(allFiles, headerSelectedColumn))
+                         
+  
   output$select.file <-
     renderUI(selectInput("filename",
                                 label = 'Gradient',
@@ -146,7 +151,7 @@ shinyServer(function(input, output,session) {
 
   
   output$data <- DT::renderDataTable(
-    Dataset(), server = FALSE, escape = FALSE, selection = 'none',extensions = "Buttons",
+    Dataset(), server = FALSE, escape = FALSE,extensions = "Buttons",selection = list(target = 'cell'),
     filter = list(position = 'top', clear = FALSE),
     options = list(
       scrollX='auto',

@@ -54,7 +54,8 @@ navbarPage(title= "ICHNAEA",
                                            # Upload data:
                                            fileInput("file", "Browse file"),
                                            radioButtons("mollecular", label = "Mollecular variables?", choices = list("Yes" = 1, "No" = 2), 
-                                                       selected = 1, inline = TRUE)
+                                                       selected = 1, inline = TRUE),
+                                           htmlOutput('response2')
                                           
                                     ))
 
