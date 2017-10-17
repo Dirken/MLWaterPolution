@@ -107,8 +107,7 @@ shinyServer(function(input, output,session) {
     showModal(modalDialog(
       title = "Select location:",
       sidebarPanel(uiOutput('select.folder'),
-                   uiOutput('select.file'),
-                   colnames(Dataset()[input$data_cell_clicked[2]$col])
+                   uiOutput('select.file')
                    ),
       mainPanel(plotOutput("plot"),
                 easyClose = TRUE
@@ -117,18 +116,16 @@ shinyServer(function(input, output,session) {
       
     ))
   })
+  observeEvent(input$filename, {
+        output$plot <- reactive({
+      document <- read.csv(file.path(root, input$folder.name,input$filename), sep="\t", dec = ",", header = FALSE, strip.white = TRUE)
   
-  
-  output$plot <- reactive({
-    document <- read.csv(file.path(root, input$folder.name,input$filename))
-   
-
-    
-    output$plot <- renderPlot({
-       plot(document[,1],document[,2])
+      output$plot <- renderPlot({
+        glmOutput <-glm(formula = document[,1] ~ document[,2],data=document,family=poisson())
+        plot(glmOutput)
+      }) 
     })
   })
-  
 
   
   #root <- "/home/dirken/MLWaterPolution/website/website/persist" 
@@ -139,11 +136,9 @@ shinyServer(function(input, output,session) {
                                               label = 'Location',
                                               choices = list.files(path = file.path(root))))
   
-  # allFiles <- list.files(path = file.path(root, input$folder.name))
-  # headerSelectedColumn <- colnames(Dataset()[input$data_cell_clicked[2]$col])
-  # columnFiles <- filter(str_detect(allFiles, headerSelectedColumn))
+
                          
-  
+  #filesInFolder <- grep(Dataset()[input$data_cell_clicked[2]$col], filesInFolder)
   output$select.file <-
     renderUI(selectInput("filename",
                                 label = 'Gradient',
