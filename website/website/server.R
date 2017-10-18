@@ -86,7 +86,7 @@ shinyServer(function(input, output,session) {
     argList <- argList[names(argList) %in% ArgNames()]
     
     Dataset <- as.data.frame(do.call(input$readFunction,c(list(input$file$datapath),argList)))
-    id <<- showNotification(paste("Succesfully loaded"), duration = 5, type="message")
+    #id <<- showNotification(paste("Succesfully loaded"), duration = 5, type="message")
     
     newrow <- Dataset[1:1,] 
     newrow <- shinyInput(actionButton, length(newrow), 'button_', label = "Season", onclick = 'Shiny.onInputChange(\"show\",  this.id)' )
@@ -110,12 +110,13 @@ shinyServer(function(input, output,session) {
                    uiOutput('select.file')
                    ),
       mainPanel(plotOutput("plot"),
-                easyClose = TRUE
+                footer = actionButton("dismiss_modal",label = "Dismiss")
                 )
       
       
     ))
   })
+  
   observeEvent(input$filename, {
         output$plot <- reactive({
       document <- read.csv(file.path(root, input$folder.name,input$filename), sep="\t", dec = ",", header = FALSE, strip.white = TRUE)
@@ -126,6 +127,10 @@ shinyServer(function(input, output,session) {
       }) 
     })
   })
+  
+  # Dataset()[input$data_cell_clicked[2]$col] <- observeEvent(input$dismiss_modal, {
+  #   input$filename
+  # })
 
   
   #root <- "/home/dirken/MLWaterPolution/website/website/persist" 
