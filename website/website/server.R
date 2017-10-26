@@ -87,9 +87,12 @@ shinyServer(function(input, output,session) {
     
     Dataset <- as.data.frame(do.call(input$readFunction,c(list(input$file$datapath),argList)))
     #id <<- showNotification(paste("Succesfully loaded"), duration = 5, type="message")
-    
+    newrow <- "Undefined season"
+    Dataset <- insertRow2(Dataset, newrow ,1)
     newrow <- Dataset[1:1,] 
     newrow <- shinyInput(actionButton, length(newrow), 'button_', label = "Season", onclick = 'Shiny.onInputChange(\"show\",  this.id)' )
+    as.data.frame(lapply(Dataset, as.numeric))
+    
 
     return(insertRow2(Dataset, newrow ,1))
   })
@@ -110,7 +113,7 @@ shinyServer(function(input, output,session) {
                    uiOutput('select.file')
                    ),
       mainPanel(plotOutput("plot"),
-                footer = actionButton("dismiss_modal",label = "Dismiss")
+                footer = actionButton("dismissModal",label = "Dismiss")
                 )
       
       
@@ -127,10 +130,8 @@ shinyServer(function(input, output,session) {
       }) 
     })
   })
-  
-  # Dataset()[input$data_cell_clicked[2]$col] <- observeEvent(input$dismiss_modal, {
-  #   input$filename
-  # })
+
+
 
   
   #root <- "/home/dirken/MLWaterPolution/website/website/persist" 
