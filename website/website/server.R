@@ -1,6 +1,11 @@
 
 shinyServer(function(input, output,session) {
   
+  
+  ################################
+  # Back and forward buttons
+  ################################
+  
   observeEvent(input$tab1, {
     updateTabsetPanel(session, "inTabset", selected = "Scenario")
   })
@@ -20,6 +25,10 @@ shinyServer(function(input, output,session) {
   observeEvent(input$tab41, {
     updateTabsetPanel(session, "inTabset", selected = "Modelling")
   })
+  
+  ################################
+  # File Loading
+  ################################
   
   ### Argument names:
   ArgNames <- reactive({
@@ -103,9 +112,11 @@ shinyServer(function(input, output,session) {
     row.names(existingDF) <- 1:nrow(existingDF)
     return(existingDF)
   }
-  
 
-  
+
+  ################################
+  # Dialog popup
+  ################################
   observeEvent(input$show, {
     showModal(modalDialog(
       title = "Select location:",
@@ -120,6 +131,10 @@ shinyServer(function(input, output,session) {
     ))
   })
   
+  ################################
+  # Reactive plot
+  ################################
+  
   observeEvent(input$filename, {
         output$plot <- reactive({
       document <- read.csv(file.path(root, input$folder.name,input$filename), sep="\t", dec = ",", header = FALSE, strip.white = TRUE)
@@ -132,10 +147,12 @@ shinyServer(function(input, output,session) {
   })
 
 
-
+  ####################################
+  # Selecting folder and file reactive
+  ####################################
   
   #root <- "/home/dirken/MLWaterPolution/website/website/persist" 
-  root <- "C:/Users/Meyerhofer/Downloads/UNI/MLWaterPolution/website/website/persist" 
+  root <- "C:/Users/Dirken/Downloads/UNI/MLWaterPolution/website/website/persist" 
   
   
   output$select.folder <-renderUI(selectInput(inputId = "folder.name",
@@ -150,6 +167,11 @@ shinyServer(function(input, output,session) {
                                 label = 'Gradient',
                                 choices = list.files(path = file.path(root, input$folder.name))))
 
+  
+  
+  ################################
+  # Rendering table
+  ################################
   
   output$data <- DT::renderDataTable(
     Dataset(), server = FALSE, escape = FALSE,extensions = "Buttons",selection = list(target = 'cell'),
@@ -169,7 +191,8 @@ shinyServer(function(input, output,session) {
       buttons = c('csv', 'excel', I('colvis'))
     ))
 
-                     
+  outputOptions(output, 'data', suspendWhenHidden = FALSE)
+  
   
 })
 

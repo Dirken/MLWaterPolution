@@ -1,7 +1,7 @@
 require(graphics)
 library(ggplot2)
 library(scales)
-root <- "C:/Users/Meyerhofer/Downloads/UNI/MLWaterPolution/given" 
+root <- "C:/Users/Dirken/Downloads/UNI/MLWaterPolution/website" 
 folder <- "DATA"
 fitxer <- "Cyprus1.csv"
 fitxer.llegit <- read.csv(file.path(root, folder, fitxer), header = TRUE, sep = ",",
@@ -10,10 +10,16 @@ fitxer.llegit <- read.csv(file.path(root, folder, fitxer), header = TRUE, sep = 
 # options(scipen=1)
 fitxer.llegit
 
-fitxer.llegit <- sapply(fitxer.llegit, 
-         function(x){
+fitxer.llegit <- 
+      sapply(fitxer.llegit, 
+        function(x){
           if(is.numeric(x)) {scientific(as.numeric(x)) }
-          else if (is.integer(x)){ }
-         }
+          else if (is.integer(x)){ 
+            
+          
+          }
+        }
       ) 
+## tot el que son labels tipo <50 i tal, caca de vaca.
 fitxer.llegit
+
