@@ -128,9 +128,10 @@ shinyServer(function(input, output,session) {
           plotOutput("plot")
           ,
           rowAux <- input$data_cell_clicked[1]$row,
+          rowAux <- rowAux+1,
 
           colAux <- input$data_cell_clicked[2]$col,
-          p(Dataset())
+          p(Dataset()[rowAux, colAux])
           
       ),
       easyClose = TRUE,
