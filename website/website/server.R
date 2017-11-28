@@ -123,9 +123,12 @@ shinyServer(function(input, output,session) {
       sidebarPanel(uiOutput('select.folder'),
                    uiOutput('select.file')
                    ),
-      mainPanel(plotOutput("plot"),
-                footer = actionButton("dismissModal",label = "Dismiss")
-                )
+      mainPanel(
+          plotOutput("plot")
+          
+      ),
+      footer = tagList(actionButton("saveModal",label = "Save"),
+                       actionButton("dismissModal",label = "Dismiss"))
       
       
     ))
@@ -176,6 +179,7 @@ shinyServer(function(input, output,session) {
   output$data <- DT::renderDataTable(
     Dataset(), server = FALSE, escape = FALSE,
     callback=JS(' $(".dt-button").css("background","#3c8dbc");
+                  $(".dt-button").css("color","white");
                   return table;'),
     extensions = "Buttons",selection = list(target = 'cell'),
     filter = list(position = 'top', clear = FALSE),
