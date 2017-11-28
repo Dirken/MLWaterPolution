@@ -1,4 +1,5 @@
 
+Dataset <- NULL
 shinyServer(function(input, output,session) {
   
   
@@ -125,13 +126,23 @@ shinyServer(function(input, output,session) {
                    ),
       mainPanel(
           plotOutput("plot")
+          ,
+          rowAux <- input$data_cell_clicked[1]$row,
+
+          colAux <- input$data_cell_clicked[2]$col,
+          p(Dataset())
           
       ),
+      easyClose = TRUE,
       footer = tagList(actionButton("saveModal",label = "Save"),
-                       actionButton("dismissModal",label = "Dismiss"))
+                       modalButton("Dismiss"))
       
       
     ))
+  })
+  
+  observeEvent(input$saveModal,{
+    modal
   })
   
   ################################
@@ -139,7 +150,7 @@ shinyServer(function(input, output,session) {
   ################################
   
   observeEvent(input$filename, {
-        output$plot <- reactive({
+      output$plot <- reactive({
       document <- read.csv(file.path(root, input$folder.name,input$filename), sep="\t", dec = ",", header = FALSE, strip.white = TRUE)
   
       output$plot <- renderPlot({
