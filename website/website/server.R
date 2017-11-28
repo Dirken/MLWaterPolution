@@ -125,13 +125,9 @@ shinyServer(function(input, output,session) {
                    uiOutput('select.file')
                    ),
       mainPanel(
-          plotOutput("plot")
-          ,
-          rowAux <- input$data_cell_clicked[1]$row,
-          rowAux <- rowAux+1,
+          plotOutput("plot"),
 
-          colAux <- input$data_cell_clicked[2]$col,
-          p(Dataset()[rowAux, colAux])
+          Dataset()[input$data_cell_clicked[1]$row+1, input$data_cell_clicked[2]$col] <- "hola"
           
       ),
       easyClose = TRUE,
