@@ -174,7 +174,10 @@ shinyServer(function(input, output,session) {
   ################################
   
   output$data <- DT::renderDataTable(
-    Dataset(), server = FALSE, escape = FALSE,extensions = "Buttons",selection = list(target = 'cell'),
+    Dataset(), server = FALSE, escape = FALSE,
+    callback=JS(' $(".dt-button").css("background","#3c8dbc");
+                  return table;'),
+    extensions = "Buttons",selection = list(target = 'cell'),
     filter = list(position = 'top', clear = FALSE),
     options = list(
       scrollX='auto',

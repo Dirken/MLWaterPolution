@@ -24,8 +24,19 @@ dashboardPage(
                          
                                     
                 ),
+                menuItem("Modeling", 
+                         tabName = "tab2",
+                         icon = icon("line-chart")
+                         
+                ),
+                menuItem("Visualization", 
+                         tabName = "tab3",
+                         icon = icon("eye")
+                         
+                         
+                ),
                 menuItem("About", 
-                         tabName = "tab2", 
+                         tabName = "tab4", 
                          icon = icon("info-circle")
                 ),
                 conditionalPanel("input.tab == 'tab1'",
@@ -79,10 +90,12 @@ dashboardPage(
         tabItem("tab1",
           DT::dataTableOutput("data")
         ),
+        tabItem("tab2"),
+        tabItem("tab3"),
 
         
-        tabItem("tab2",
-          p("hola2")
+        tabItem("tab4",
+          p("This is a help page")
         )
     )
   )
