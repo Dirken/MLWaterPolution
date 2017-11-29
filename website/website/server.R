@@ -140,11 +140,7 @@ shinyServer(function(input, output,session) {
     ))
   })
   observeEvent(input$saveModal,{
-    
-    Dataset <- reactive({
-      Dataset()[auxRow+1, auxCol] <- "hola"
-    })
-    removeModal()
+    Dataset()[auxRow+1, auxCol] <- "hi"
   })
   
   ################################
@@ -188,6 +184,9 @@ shinyServer(function(input, output,session) {
   ################################
   # Rendering table
   ################################
+  
+  
+
   
   output$data <- DT::renderDataTable(
     Dataset(), server = FALSE, escape = FALSE,
