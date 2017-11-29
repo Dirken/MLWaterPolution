@@ -1,5 +1,7 @@
 
 Dataset <- NULL
+auxRow <- NULL
+auxCol <- NULL
 shinyServer(function(input, output,session) {
   
   
@@ -126,9 +128,9 @@ shinyServer(function(input, output,session) {
                    ),
       mainPanel(
           plotOutput("plot"),
+          auxRow <- input$data_cell_clicked[1]$row+1,
+          auxCol <-input$data_cell_clicked[2]$col
 
-          Dataset()[input$data_cell_clicked[1]$row+1, input$data_cell_clicked[2]$col] <- "hola"
-          
       ),
       easyClose = TRUE,
       footer = tagList(actionButton("saveModal",label = "Save"),
@@ -137,9 +139,12 @@ shinyServer(function(input, output,session) {
       
     ))
   })
-  
   observeEvent(input$saveModal,{
-    modal
+    
+    Dataset <- reactive({
+      Dataset()[auxRow+1, auxCol] <- "hola"
+    })
+    removeModal()
   })
   
   ################################
