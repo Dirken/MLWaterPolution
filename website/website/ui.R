@@ -14,78 +14,19 @@ jsCode <-
 dashboardPage(
   dashboardHeader(
     title = "ICHNAEA"
-
   ),
   dashboardSidebar(
-    sidebarMenu(id = "tab",
-                menuItem("Table", 
-                         tabName = "tab1",
-                         icon = icon("table")
-                         
-                                    
-                ),
-                menuItem("Modeling", 
-                         tabName = "tab2",
-                         icon = icon("line-chart")
-                         
-                ),
-                menuItem("Visualization", 
-                         tabName = "tab3",
-                         icon = icon("eye")
-                         
-                         
-                ),
-                menuItem("About", 
-                         tabName = "tab4", 
-                         icon = icon("info-circle")
-                ),
-                menuItem("Help",
-                         tabName = "tab5",
-                         icon = icon("question")
-                ),
-                conditionalPanel("input.tab == 'tab1'",
-                                 selectInput("readFunction", "Format to read", c(
-                                   # Base R:
-                                   "read.table",
-                                   "read.csv",
-                                   "read.csv2",
-                                   "read.delim",
-                                   "read.delim2",
-                                   
-                                   # foreign functions:
-                                   "read.spss",
-                                   "read.arff",
-                                   "read.dbf",
-                                   "read.dta",
-                                   "read.epiiinfo",
-                                   "read.mtp",
-                                   "read.octave",
-                                   "read.ssd",
-                                   "read.systat",
-                                   "read.xport",
-                                   "read_excel",
-                                   
-                                   # Advanced functions:
-                                   "scan",
-                                   "readLines"
-                                 )
-                                 ),
-                                 
-                                 # Argument selecter:
-                                 htmlOutput("ArgSelect"),
-                                 
-                                 # Argument field:
-                                 htmlOutput("ArgText"),
-                                 
-                                 # Upload data:
-                                 fileInput("file", "Browse file"),
-                                 htmlOutput('response2')
-                )
-                
+    sidebarMenuOutput("Semi_collapsible_sidebar"),              
+    tags$script("$(document).on('click', '.sidebar-toggle', function () {
+               Shiny.onInputChange('SideBar_col_react', Math.random())});"),
+    tags$script("$(document).on('click', '.treeview.active', function () {
+               $(this).removeClass('active');
+               $(this).find( 'ul' ).removeClass('menu-open'); 
+               $(this).find( 'ul' ).css('display', 'none');});"
     )
-    
   ),
   dashboardBody(
+    tags$head(tags$link(rel = "stylesheet", type = "text/css", href = "styles.css")),
     tags$head(tags$script(src="js/table.js")),
     shinyjs::useShinyjs(),
     extendShinyjs(text = jsCode),
@@ -118,6 +59,9 @@ dashboardPage(
           p("This website is provided by Universitat Politècnica de Catalunya and Universitat de Barcelona. ")
                
           
+        ),
+        tabItem("tab5",
+                p("help")
         )
     )
   )
