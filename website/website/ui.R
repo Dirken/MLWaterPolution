@@ -86,8 +86,12 @@ dashboardPage(
     shinyjs::useShinyjs(),
     extendShinyjs(text = jsCode),
     tabItems(
-      
+        
         tabItem("tab1",
+          conditionalPanel(id='loader',
+                           condition="($('html').hasClass('shiny-busy'))",
+                           HTML("<center> <img src='img/wait.gif'> </center>")
+          ),
           DT::dataTableOutput("data")
         ),
         tabItem("tab2"),

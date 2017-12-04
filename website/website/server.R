@@ -80,7 +80,6 @@ shinyServer(function(input, output,session) {
     inputs
   }
   
-
   ### Data import:
   Dataset <- reactive({
     if (is.null(input$file)) {
@@ -140,7 +139,7 @@ shinyServer(function(input, output,session) {
     ))
   })
   observeEvent(input$saveModal,{
-    Dataset()[auxRow+1, auxCol] <- "hi"
+    Dataset()[auxRow+1, auxCol] <<- NULL
   })
   
   ################################
