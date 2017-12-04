@@ -12,9 +12,9 @@ jsCode <-
 
 
 dashboardPage(
-  
   dashboardHeader(
     title = "ICHNAEA"
+
   ),
   dashboardSidebar(
     sidebarMenu(id = "tab",
@@ -38,6 +38,10 @@ dashboardPage(
                 menuItem("About", 
                          tabName = "tab4", 
                          icon = icon("info-circle")
+                ),
+                menuItem("Help",
+                         tabName = "tab5",
+                         icon = icon("question")
                 ),
                 conditionalPanel("input.tab == 'tab1'",
                                  selectInput("readFunction", "Format to read", c(
@@ -94,12 +98,26 @@ dashboardPage(
           ),
           DT::dataTableOutput("data")
         ),
-        tabItem("tab2"),
+        tabItem("tab2"
+                
+                
+        ),
+        
         tabItem("tab3"),
 
         
         tabItem("tab4",
-          p("This is a help page")
+          div( 
+            HTML("<center>"),
+              img(src="img/logo_ub.png", width ="500px"),
+              img(src="img/logo_upc.png"),
+            HTML("</center>")
+          ),
+          br(),
+          
+          p("This website is provided by Universitat Politècnica de Catalunya and Universitat de Barcelona. ")
+               
+          
         )
     )
   )

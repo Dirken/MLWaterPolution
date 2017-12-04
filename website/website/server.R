@@ -104,8 +104,16 @@ shinyServer(function(input, output,session) {
     newrow <- shinyInput(actionButton, length(newrow), 'button_', label = "Season", onclick = 'Shiny.onInputChange(\"show\",  this.id)' )
     as.data.frame(lapply(Dataset, as.numeric))
     
-
-    return(insertRow2(Dataset, newrow ,1))
+    Dataset <-insertRow2(Dataset, newrow ,1)
+    # Dataset <- sapply(Dataset(), 
+    #                    function(x){
+    #                      if(is.numeric(x)) {scientific(as.numeric(x)) }
+    #                      else if (is.integer(x)){ 
+    #                      }
+    #                    }
+    #             )
+    
+    return(Dataset)
   })
   
   insertRow2 <- function(existingDF, newrow, r) {

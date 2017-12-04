@@ -11,7 +11,7 @@ fitxer.llegit <- read.csv(file.path(root, folder, fitxer), header = TRUE, sep = 
 fitxer.llegit
 
 fitxer.llegit <- 
-      sapply(fitxer.llegit, 
+      sapply(insertRow2(Dataset, newrow ,1), 
         function(x){
           if(is.numeric(x)) {scientific(as.numeric(x)) }
           else if (is.integer(x)){ 
