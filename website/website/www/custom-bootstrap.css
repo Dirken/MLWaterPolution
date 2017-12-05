@@ -77,6 +77,7 @@
   width:13%;
 }
  .modal-dialog{ width:50%}
- .sidebar-menu{
-     margin-left: -21% !important;
+
+.shifted{
+  margin-left:3%;
 }
