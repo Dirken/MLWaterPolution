@@ -1,5 +1,4 @@
 
-Dataset <- NULL
 auxRow <- NULL
 auxCol <- NULL
 shinyServer(function(input, output,session) {
@@ -80,6 +79,8 @@ shinyServer(function(input, output,session) {
     inputs
   }
   
+  Dataset <- reactiveValues()
+  
   ### Data import:
   Dataset <- reactive({
     if (is.null(input$file)) {
@@ -147,7 +148,7 @@ shinyServer(function(input, output,session) {
     ))
   })
   observeEvent(input$saveModal,{
-    Dataset()[auxRow+1, auxCol] <<- NULL
+    Dataset()[auxRow+1, auxCol] <- NULL
   })
   
   ################################
@@ -236,17 +237,17 @@ shinyServer(function(input, output,session) {
   )
     
   output$Semi_collapsible_sidebar<-renderMenu({
-      if (vals$collapsed){
-        sidebarMenu(id = "tab",
-                    menuItem(NULL, tabName = "tab1",icon = icon("table")),
-                    menuItem(NULL, tabName = "tab2", icon = icon("line-chart")),
-                    menuItem(NULL, tabName = "tab3",icon = icon("eye")),
-                    menuItem(NULL, tabName = "tab4", icon = icon("info-circle")),
-                    menuItem(NULL, tabName = "tab5",icon = icon("question"))
-                    
-        )
-      }
-      else{
+      # if (vals$collapsed){
+      #   sidebarMenu(id = "tab",
+      #               menuItem(NULL, tabName = "tab1",icon = icon("table")),
+      #               menuItem(NULL, tabName = "tab2", icon = icon("line-chart")),
+      #               menuItem(NULL, tabName = "tab3",icon = icon("eye")),
+      #               menuItem(NULL, tabName = "tab4", icon = icon("info-circle")),
+      #               menuItem(NULL, tabName = "tab5",icon = icon("question"))
+      #               
+      #   )
+      # }
+      # else{
         sidebarMenu(id = "tab",
                     menuItem("Table", tabName = "tab1",icon = icon("table")),
                     menuItem("Modeling", tabName = "tab2", icon = icon("line-chart")),
@@ -294,7 +295,7 @@ shinyServer(function(input, output,session) {
                     )
                     
         )
-      }
+      # }
     
     
   })
