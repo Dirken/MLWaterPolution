@@ -1,6 +1,7 @@
 ################################
 # Dialog popup
 ################################
+
 observeEvent(input$show, {
   showModal(modalDialog(
     title = "Select location:",
@@ -8,9 +9,7 @@ observeEvent(input$show, {
                  uiOutput('select.file')
     ),
     mainPanel(
-      plotOutput("plot"),
-      auxRow <- input$data_cell_clicked[1]$row+1,
-      auxCol <-input$data_cell_clicked[2]$col
+      plotOutput("plot")
       
     ),
     easyClose = TRUE,
@@ -21,5 +20,6 @@ observeEvent(input$show, {
   ))
 })
 observeEvent(input$saveModal,{
-  Dataset()[auxRow+1, auxCol] <- NULL
+  Dataset$data[input$data_cell_clicked[1]$row+1, input$data_cell_clicked[2]$col] <- input$filename
+  removeModal()
 })

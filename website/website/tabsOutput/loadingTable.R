@@ -13,7 +13,7 @@ source("tabsOutput/auxLoadingTable.R", local = TRUE)
 ################################
 
 ### Data import:
-Dataset <- reactive({
+observeEvent(input$file,{
   if (is.null(input$file)) {
     # User has not uploaded a file yet
     return(data.frame())
@@ -28,15 +28,15 @@ Dataset <- reactive({
   
   argList <- argList[names(argList) %in% ArgNames()]
   
-  Dataset <- as.data.frame(do.call(input$readFunction,c(list(input$file$datapath),argList)))
+  Dataset$data <- as.data.frame(do.call(input$readFunction,c(list(input$file$datapath),argList)))
   #id <<- showNotification(paste("Succesfully loaded"), duration = 5, type="message")
   newrow <- "Undefined season"
-  Dataset <- insertRow2(Dataset, newrow ,1)
-  newrow <- Dataset[1:1,] 
+  Dataset$data <- insertRow2(Dataset$data, newrow ,1)
+  newrow <- Dataset$data[1:1,] 
   newrow <- shinyInput(actionButton, length(newrow), 'button_', label = "Season", onclick = 'Shiny.onInputChange(\"show\",  this.id)' )
-  as.data.frame(lapply(Dataset, as.numeric))
+  as.data.frame(lapply(Dataset$data, as.numeric))
   
-  Dataset <-insertRow2(Dataset, newrow ,1)
+  Dataset$data <-insertRow2(Dataset$data, newrow ,1)
   # Dataset <- sapply(Dataset(), 
   #                    function(x){
   #                      if(is.numeric(x)) {scientific(as.numeric(x)) }
@@ -44,6 +44,5 @@ Dataset <- reactive({
   #                      }
   #                    }
   #             )
-  
-  return(Dataset)
+
 })

@@ -1,7 +1,7 @@
 
 shinyServer(function(input, output,session) {
 
-  
+  Dataset <- reactiveValues()
   # Loading table
   source("tabsOutput/loadingTable.R",local=TRUE)
   

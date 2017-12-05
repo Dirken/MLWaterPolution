@@ -30,11 +30,11 @@ output$ArgText <- renderUI({
 })
 
 output$columnOut <- renderUI(
-  selectizeInput("columnOuput", "Display", colnames(Dataset()), selected = colnames(Dataset()), multiple = TRUE)
+  selectizeInput("columnOuput", "Display", colnames(Dataset$data), selected = colnames(Dataset$data), multiple = TRUE)
 )
 
 columnOut = reactive({
-  Dataset = Dataset[colnames(Dataset())]
+  Dataset = Dataset$data[colnames(Dataset$data)]
 })
 
 # This function will create the buttons for the datatable, they will be unique

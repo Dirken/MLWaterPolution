@@ -1,5 +1,5 @@
 output$data <- DT::renderDataTable(
-  Dataset(), server = FALSE, escape = FALSE,
+  Dataset$data, server = FALSE, escape = FALSE,
   callback=JS(' $(".dt-button").css("background","#3c8dbc");
               $(".dt-button").css("color","white");
               return table;'),
