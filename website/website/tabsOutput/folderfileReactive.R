@@ -3,7 +3,8 @@
 ####################################
 
 #root <- "/home/dirken/MLWaterPolution/website/website/persist" 
-root <- "C:/Users/Dirken/Downloads/UNI/MLWaterPolution/website/website/persist" 
+#root <- "C:/Users/Dirken/Downloads/UNI/MLWaterPolution/website/website/persist" 
+root <- "C:/Users/Meyerhofer/Downloads/UNI/MLWaterPolution/website/website/persist"
 
 
 output$select.folder <-renderUI(selectInput(inputId = "folder.name",

@@ -7,7 +7,7 @@ output$data <- DT::renderDataTable(
   filter = list(position = 'top', clear = FALSE),
   options = list(
     scrollX='auto',
-    scrollY='400px',
+    scrollY='500px',
     paging = FALSE,
     regex = TRUE,
     searchHighlight = TRUE,

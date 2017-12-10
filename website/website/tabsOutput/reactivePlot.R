@@ -6,7 +6,7 @@ observeEvent(input$filename, {
     document <- read.csv(file.path(root, input$folder.name,input$filename), sep="\t", dec = ",", header = FALSE, strip.white = TRUE)
     
     output$plot <- renderPlot({
-      glmOutput <-glm(formula = document[,1] ~ document[,2],data=document,family=poisson())
+      glmOutput <- glm(formula = document[,1] ~ document[,2],data=document,family=poisson())
       plot(glmOutput)
     }) 
   })

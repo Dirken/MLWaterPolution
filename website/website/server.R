@@ -19,6 +19,8 @@ shinyServer(function(input, output,session) {
   
   # Menu shinydashboard
   source("tabsOutput/menu.R", local = TRUE)
+
+  
 })
 
 

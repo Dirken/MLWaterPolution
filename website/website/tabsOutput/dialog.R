@@ -5,12 +5,13 @@
 observeEvent(input$show, {
   showModal(modalDialog(
     title = "Select location:",
+    
     sidebarPanel(uiOutput('select.folder'),
                  uiOutput('select.file')
     ),
     mainPanel(
-      plotOutput("plot")
-      
+      withSpinner(plotOutput("plot"))
+
     ),
     easyClose = TRUE,
     footer = tagList(actionButton("saveModal",label = "Save"),
