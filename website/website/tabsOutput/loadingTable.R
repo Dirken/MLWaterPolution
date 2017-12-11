@@ -40,18 +40,30 @@ observeEvent(input$file,{
     print(input$model)
     newrow <- "Undefined season"
     Dataset$data <- insertRow2(Dataset$data, newrow ,1)
+    newrow <- Dataset$data[1:1,]
+    newrow <- shinyInput(actionButton, length(newrow), 'button_', label = "Season", onclick = 'Shiny.onInputChange(\"show\",  this.id)' )
+    as.data.frame(lapply(Dataset$data, as.numeric))
+    
+    Dataset$data <-insertRow2(Dataset$data, newrow ,1)
   }
-  newrow <- Dataset$data[1:1,]
-  newrow <- shinyInput(actionButton, length(newrow), 'button_', label = "Season", onclick = 'Shiny.onInputChange(\"show\",  this.id)' )
-  as.data.frame(lapply(Dataset$data, as.numeric))
-  
-  Dataset$data <-insertRow2(Dataset$data, newrow ,1)
-  # Dataset <- sapply(Dataset(), 
-  #                    function(x){
-  #                      if(is.numeric(x)) {scientific(as.numeric(x)) }
-  #                      else if (is.integer(x)){ 
-  #                      }
-  #                    }
-  #             )
+  else{
+    Dataset$data <-  Dataset$data[-1, ]
+    
+    newrow <- Dataset$data[1:1,]
+    newrow <- shinyInput(actionButton, length(newrow), 'button_', label = "Season", onclick = 'Shiny.onInputChange(\"show\",  this.id)' )
+    as.data.frame(lapply(Dataset$data, as.numeric))
+    
+    Dataset$data <-insertRow2(Dataset$data, newrow ,1)
+  }
+
+    Dataset$data <- sapply(Dataset$data, 
+                            function(x){
+                              if(is.numeric(x)) {scientific(as.numeric(x)) }
+                              else if (is.integer(x)){ }
+                              else{
+                                x
+                              }
+                            }
+  ) 
 
 })
