@@ -6,8 +6,10 @@ observeEvent(input$show, {
   showModal(modalDialog(
     title = "Select location:",
     
-    sidebarPanel(uiOutput('select.folder'),
-                 uiOutput('select.file')
+    sidebarPanel(
+                 # uiOutput('select.folder'),
+                 # uiOutput('select.file'),
+                 shinyDirButton("dir", "Chose directory", "Upload")
     ),
     mainPanel(
       withSpinner(plotOutput("plot"))
