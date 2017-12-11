@@ -1,5 +1,5 @@
 output$data <- DT::renderDataTable(
-  Dataset$data, server = FALSE, escape = FALSE,
+  Dataset$data, server = FALSE, escape = FALSE,    rownames = FALSE,
   callback=JS(' $(".dt-button").css("background","#3c8dbc");
               $(".dt-button").css("color","white");
               return table;'),
@@ -13,7 +13,7 @@ output$data <- DT::renderDataTable(
     searchHighlight = TRUE,
     search = list(regex = TRUE),
     columnDefs = list(list(className = 'dt-center', targets = 5)),
-    
+
     #pageLength = 5,
     #lengthMenu = c(5, 10, 15, 20),
     dom = 'Bfrtip',

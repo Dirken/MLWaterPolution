@@ -45,6 +45,7 @@ dashboardPage(
                   status = "primary",
                   width = 12,
                   withSpinner(DT::dataTableOutput("data"))
+                  
                 )
 
           

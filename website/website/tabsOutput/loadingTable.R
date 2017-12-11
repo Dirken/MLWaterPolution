@@ -9,6 +9,11 @@ source("tabsOutput/insertRow.R", local = TRUE)
 source("tabsOutput/auxLoadingTable.R", local = TRUE)
 
 ################################
+# Menu creation 
+################################
+source("tabsOutput/menu.R", local = TRUE)
+
+################################
 # File Loading
 ################################
 
@@ -31,8 +36,12 @@ observeEvent(input$file,{
   Dataset$data <- as.data.frame(do.call(input$readFunction,c(list(input$file$datapath),argList)))
   #id <<- showNotification(paste("Succesfully loaded"), duration = 5, type="message")
   newrow <- "Undefined season"
-  Dataset$data <- insertRow2(Dataset$data, newrow ,1)
-  newrow <- Dataset$data[1:1,] 
+  if(input$model != TRUE){
+    print(input$model)
+    newrow <- "Undefined season"
+    Dataset$data <- insertRow2(Dataset$data, newrow ,1)
+  }
+  newrow <- Dataset$data[1:1,]
   newrow <- shinyInput(actionButton, length(newrow), 'button_', label = "Season", onclick = 'Shiny.onInputChange(\"show\",  this.id)' )
   as.data.frame(lapply(Dataset$data, as.numeric))
   
