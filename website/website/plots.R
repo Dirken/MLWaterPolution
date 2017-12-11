@@ -5,7 +5,7 @@ root <- "C:/Users/Meyerhofer/Downloads/UNI/MLWaterPolution/given"
 folder <- "DATA"
 fitxer <- "Cyprus1.csv"
 fitxer.llegit <- read.csv(file.path(root, folder, fitxer), header = TRUE, sep = ",",
-                            strip.white = TRUE)
+                            strip.white = TRUE, stringsAsFactors = FALSE)
 # str(fitxer.llegit)
 # options(scipen=1)
 fitxer.llegit

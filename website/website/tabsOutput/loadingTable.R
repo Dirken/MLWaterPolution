@@ -33,7 +33,17 @@ observeEvent(input$file,{
   
   argList <- argList[names(argList) %in% ArgNames()]
   
-  Dataset$data <- as.data.frame(do.call(input$readFunction,c(list(input$file$datapath),argList)))
+  Dataset$data <- do.call(input$readFunction,c(list(input$file$datapath),argList,  stringsAsFactors=FALSE))
+
+  Dataset$data <- sapply(Dataset$data, 
+                         function(x){
+                           if(is.numeric(x)) {scientific(as.numeric(x)) }
+                           else if (is.integer(x)){ }
+                           # else if (is.string(x)){ }
+                           else{
+                             x
+                           }
+                         }  )
   #id <<- showNotification(paste("Succesfully loaded"), duration = 5, type="message")
   newrow <- "Undefined season"
   if(input$model != TRUE){
@@ -42,7 +52,7 @@ observeEvent(input$file,{
     Dataset$data <- insertRow2(Dataset$data, newrow ,1)
     newrow <- Dataset$data[1:1,]
     newrow <- shinyInput(actionButton, length(newrow), 'button_', label = "Season", onclick = 'Shiny.onInputChange(\"show\",  this.id)' )
-    as.data.frame(lapply(Dataset$data, as.numeric))
+    # as.data.frame(lapply(Dataset$data, as.numeric))
     
     Dataset$data <-insertRow2(Dataset$data, newrow ,1)
   }
@@ -51,19 +61,11 @@ observeEvent(input$file,{
     
     newrow <- Dataset$data[1:1,]
     newrow <- shinyInput(actionButton, length(newrow), 'button_', label = "Season", onclick = 'Shiny.onInputChange(\"show\",  this.id)' )
-    as.data.frame(lapply(Dataset$data, as.numeric))
-    
+
     Dataset$data <-insertRow2(Dataset$data, newrow ,1)
   }
 
-    Dataset$data <- sapply(Dataset$data, 
-                            function(x){
-                              if(is.numeric(x)) {scientific(as.numeric(x)) }
-                              else if (is.integer(x)){ }
-                              else{
-                                x
-                              }
-                            }
-  ) 
+
+
 
 })
