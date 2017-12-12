@@ -37,7 +37,7 @@ observeEvent(input$file,{
 
   Dataset$data <- sapply(Dataset$data, 
                          function(x){
-                           if(is.numeric(x)) {scientific(as.numeric(x)) }
+                           if(is.numeric(x)) {as.numeric(x) }
                            else if (is.integer(x)){ }
                            # else if (is.string(x)){ }
                            else{

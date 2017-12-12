@@ -4,7 +4,7 @@ library(shinyBS)
 #library(shinyjqui)
 library(shinycssloaders)
 library(shinyWidgets)
-library(ECharts2Shiny)
+#library(ECharts2Shiny)
 
 jsCode <- 
   "shinyjs.filename =
