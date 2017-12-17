@@ -23,6 +23,6 @@ observeEvent(input$show, {
   ))
 })
 observeEvent(input$saveModal,{
-  Dataset$data[input$data_cell_clicked[1]$row+1, input$data_cell_clicked[2]$col] <- input$filename
+  Dataset$data[input$data_cell_clicked[1]$row+1, input$data_cell_clicked[2]$col+1] <- input$filename
   removeModal()
 })
