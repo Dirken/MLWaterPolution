@@ -106,37 +106,10 @@ dashboardPage(
                        )
                       )
                     )
-                ),
+                )
 
 
         
-        tabItem("tab4",
-                box(
-                  title = "About this tool",
-                  status = "primary",
-                  width = 12,
-                  div( 
-                    HTML("<center>"),
-                    img(src="img/logo_ub.png", width ="500px"),
-                    img(src="img/logo_upc.png"),
-                    HTML("</center>")
-                  ),
-                  br(),
-                  
-                  p("This website is provided by Universitat Politècnica de Catalunya and Universitat de Barcelona. ")
-                )
-         
-               
-          
-        ),
-        tabItem("tab5",
-                box(
-                  title = "User manual",
-                  status = "primary",
-                  width = 12,
-                  p("Manual")
-                )
-        )
     )
   )
 )
