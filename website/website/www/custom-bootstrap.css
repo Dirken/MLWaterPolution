@@ -70,13 +70,10 @@
   opacity: 0.95;
   transition-delay: 0;
 }
-.upc{
-  width:15%;
+
+#shiny-modal.modal-dialog { 
+  width: 50%;
 }
-.ub{
-  width:13%;
-}
- .modal-dialog{ width:50%}
 
 .shifted{
   margin-left:3%;

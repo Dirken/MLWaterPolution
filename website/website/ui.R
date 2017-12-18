@@ -14,27 +14,30 @@ jsCode <-
 	    });
     }"
 
-options(shiny.sanitize.errors = TRUE)
+dbHeader <- dashboardHeader(title = "ICHNAEA",
+                            tags$li(a(href = '',
+                                      img(icon("question"), "Help", height = "30px"),
+                                      style = "padding-top:10px; padding-bottom:10px;"),
+                                    class = "dropdown"),
+                            tags$li(a(href = '',
+                                      img(icon("info-circle"), "About", height = "30px"),
+                                      style = "padding-top:10px; padding-bottom:10px;"),
+                                      class = "dropdown")
+                            )
+
+options(shiny.sanitize.errors = FALSE)
 dashboardPage(
-  dashboardHeader(
-    title = "ICHNAEA"
-  ),
+  dbHeader,
   dashboardSidebar(
     sidebarMenuOutput("Semi_collapsible_sidebar")
-    # ,              
-    # tags$script("$(document).on('click', '.sidebar-toggle', function () {
-    #            Shiny.onInputChange('SideBar_col_react', Math.random())});"),
-    # tags$script("$(document).on('click', '.treeview.active', function () {
-    #            $(this).removeClass('active');
-    #            $(this).find( 'ul' ).removeClass('menu-open'); 
-    #            $(this).find( 'ul' ).css('display', 'none');});"
-    # )
   ),
   dashboardBody(
     tags$head(tags$link(rel = "stylesheet", type = "text/css", href = "styles.css")),
     tags$head(tags$script(src="js/table.js")),
     shinyjs::useShinyjs(),
     extendShinyjs(text = jsCode),
+
+    
     tabItems(
       
         

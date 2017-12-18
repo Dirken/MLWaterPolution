@@ -12,5 +12,6 @@ library(shinyjs)
 library(ggplot2)
 library(dplyr)
 library(scales)
+library(shinyFiles)
 
 

@@ -8,8 +8,11 @@ observeEvent(input$show, {
     
     sidebarPanel(
                  uiOutput('select.folder'),
-                 uiOutput('select.file')
-                 # shinyDirButton("dir", "Chose directory", "Upload")
+                 uiOutput('select.file'),
+                 fileInput("file2", "Load location")
+                 # shinyFilesButton('files', label='File select', title='Please select a file', multiple=FALSE)
+                 
+                 # shinyDirButton("dir", "Use mine", "Upload")
     ),
     mainPanel(
       withSpinner(plotOutput("plot"))
