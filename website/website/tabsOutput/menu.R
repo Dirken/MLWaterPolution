@@ -17,10 +17,10 @@ onclick('switchState', runjs({'
   }
   var opcions = document.querySelector(".opcions")
   
-  if (opcions.style.visibility == "hidden") {
-    opcions.style.visibility = "visible";
+  if (opcions.style.display == "none") {
+    opcions.style.display = "block";
   } else {
-    opcions.style.visibility = "hidden";
+    opcions.style.display = "none";
   }
   '}))
 
