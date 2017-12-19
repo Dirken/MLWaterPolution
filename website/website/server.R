@@ -1,8 +1,6 @@
 
 shinyServer(function(input, output,session) {
 
-  
-  
   Dataset <- reactiveValues()
   # Loading table
   source("tabsOutput/loadingTable.R",local=TRUE)
@@ -22,8 +20,6 @@ shinyServer(function(input, output,session) {
   # Menu shinydashboard
   source("tabsOutput/menu.R", local = TRUE)
 
-
-  
 })
 
 
