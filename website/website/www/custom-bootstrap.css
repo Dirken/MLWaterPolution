@@ -78,3 +78,14 @@
 .shifted{
   margin-left:3%;
 }
+
+.modal-dialog{
+  width:  75%;
+  
+}
+#plot.shiny-html-output.shiny-bound-output{
+  display: flex;
+}
+.header{
+  display:flex;
+}

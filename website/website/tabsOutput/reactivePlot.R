@@ -7,13 +7,12 @@
 observeEvent(input$filename, {
   output$plot <- reactive({
     
-    # max_plots <- length(list.dirs(file.path(root, colnames(Dataset$data)[input$data_cell_clicked[2]$col+1])))
-    max_plots <- 2
+    max_plots <- length(list.files(file.path(root, colnames(Dataset$data)[input$data_cell_clicked[2]$col+1],input$filename)))
     # Insert the right number of plot output objects into the web page
     output$plot <- renderUI({
       plot_output_list <- lapply(1:max_plots, function(i) {
         plotname <- paste("plot", i, sep="")
-        plotOutput(plotname, height = 280, width = 250)
+        plotOutput(plotname, height = 300, width = 300)
       })
       
       # Convert the list to a tagList - this is necessary for the list of items
@@ -30,7 +29,7 @@ observeEvent(input$filename, {
       local({
         my_i <- i
         plotname <- paste("plot", my_i, sep="")
-        print(input$filename)
+        #print(input$filename)
         arrayFiles <- list.files(file.path(root, colnames(Dataset$data)[input$data_cell_clicked[2]$col+1],input$filename))
         #print(file.path(list.dirs(file.path(root, colnames(Dataset$data)[input$data_cell_clicked[2]$col+1]))[2]),input$filename)
         print(arrayFiles[1])

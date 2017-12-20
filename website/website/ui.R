@@ -1,7 +1,7 @@
 library(leaflet)
 library(shinydashboard)
 library(shinyBS)
-#library(shinyjqui)
+library(shinyjqui)
 library(shinycssloaders)
 library(shinyWidgets)
 #library(ECharts2Shiny)

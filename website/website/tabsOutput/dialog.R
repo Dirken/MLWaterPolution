@@ -19,7 +19,8 @@ observeEvent(input$show, {
     ),
     easyClose = TRUE,
     footer = tagList(actionButton("saveModal",label = "Save"),
-                     modalButton("Dismiss"))
+                     modalButton("Dismiss")),
+    size = "l"
     
     
   ))
