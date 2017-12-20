@@ -30,9 +30,12 @@ observeEvent(input$filename, {
       local({
         my_i <- i
         plotname <- paste("plot", my_i, sep="")
-        print((file.path(root, colnames(Dataset$data)[input$data_cell_clicked[2]$col+1])))
+        print(input$filename)
+        print(list.files(file.path(root, colnames(Dataset$data)[input$data_cell_clicked[2]$col+1],input$filename)))
+        #print(file.path(list.dirs(file.path(root, colnames(Dataset$data)[input$data_cell_clicked[2]$col+1]))[2]),input$filename)
         
-        document <- read.csv(list.files(file.path(root, colnames(Dataset$data)[input$data_cell_clicked[2]$col+1]))[my_i],
+        
+        document <- read.csv(list.files(file.path(root, colnames(Dataset$data)[input$data_cell_clicked[2]$col+1],input$filename))[my_i],
                              sep="\t", 
                              dec = ",",
                              header = FALSE,
