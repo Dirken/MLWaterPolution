@@ -7,8 +7,8 @@
 observeEvent(input$filename, {
   output$plot <- reactive({
     
-    max_plots <- length(list.dirs(file.path(root, colnames(Dataset$data)[input$data_cell_clicked[2]$col+1])))
-    
+    # max_plots <- length(list.dirs(file.path(root, colnames(Dataset$data)[input$data_cell_clicked[2]$col+1])))
+    max_plots <- 2
     # Insert the right number of plot output objects into the web page
     output$plot <- renderUI({
       plot_output_list <- lapply(1:max_plots, function(i) {
@@ -23,7 +23,7 @@ observeEvent(input$filename, {
     
     # Call renderPlot for each one. Plots are only actually generated when they
     # are visible on the web page.
-    for (i in 2:max_plots) {
+    for (i in 1:max_plots) {
       # Need local so that each item gets its own number. Without it, the value
       # of i in the renderPlot() will be the same across all instances, because
       # of when the expression is evaluated.
@@ -31,11 +31,12 @@ observeEvent(input$filename, {
         my_i <- i
         plotname <- paste("plot", my_i, sep="")
         print(input$filename)
-        print(list.files(file.path(root, colnames(Dataset$data)[input$data_cell_clicked[2]$col+1],input$filename)))
+        arrayFiles <- list.files(file.path(root, colnames(Dataset$data)[input$data_cell_clicked[2]$col+1],input$filename))
         #print(file.path(list.dirs(file.path(root, colnames(Dataset$data)[input$data_cell_clicked[2]$col+1]))[2]),input$filename)
+        print(arrayFiles[1])
+        print(file.path(root, colnames(Dataset$data)[input$data_cell_clicked[2]$col+1],input$filename,arrayFiles[my_i]))
         
-        
-        document <- read.csv(list.files(file.path(root, colnames(Dataset$data)[input$data_cell_clicked[2]$col+1],input$filename))[my_i],
+        document <- read.csv(file.path(root, colnames(Dataset$data)[input$data_cell_clicked[2]$col+1],input$filename,arrayFiles[my_i]),
                              sep="\t", 
                              dec = ",",
                              header = FALSE,
