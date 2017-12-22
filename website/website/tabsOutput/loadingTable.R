@@ -21,6 +21,12 @@ source("tabsOutput/menu.R", local = TRUE)
 observeEvent(input$file,{
   if (is.null(input$file)) {
     # User has not uploaded a file yet
+    sendSweetAlert(
+      session = session,
+      title = "Error !!",
+      text = "File is null",
+      type = "error"
+    )
     return(data.frame())
   }
   args <- grep(paste0("^",input$readFunction,"__"), names(input), value = TRUE)
@@ -64,6 +70,12 @@ observeEvent(input$file,{
 
     Dataset$data <-insertRow2(Dataset$data, newrow ,1)
   }
+  sendSweetAlert(
+    session = session,
+    title = "Success !!",
+    text = "File was load successfully",
+    type = "success"
+  )
 
 
 

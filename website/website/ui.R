@@ -16,14 +16,14 @@ jsCode <-
 
 dbHeader <- dashboardHeader(title = "ICHNAEA",
                             tags$li(HTML( 
-                                  "<a href='www/manual.txt' style='padding-top:10px; padding-bottom:10px;' download>
-                                    <img height='30px'>
+                                  "<a href='www/manual.txt' style='padding-top:10px; padding-bottom:8px;' download>
+                                    <img height='20px'>
                                       <i class='fa fa-question' style='height:30px;'></i> Help 
                                   </a>"),  
                                   class = "dropdown"),
                             tags$li(HTML( 
-                              "<a href='' style='padding-top:10px; padding-bottom:10px;'  data-toggle='modal' data-target='#myModal'>
-                                    <img height='30px'>
+                              "<a href='' style='padding-top:10px; padding-bottom:8px;'  data-toggle='modal' data-target='#myModal'>
+                                    <img height='20px'>
                                       <i class='fa fa-info-circle' style='height:30px;'></i> About 
 
                                </a>"),  
@@ -53,7 +53,7 @@ modalAbout <- HTML("
   </p>
   </div>
   <div class='modal-footer'>
-  <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
+  <button type='button' class='btn btn-default' data-dismiss='modal'>Dismiss</button>
   </div>
   </div>
   
@@ -72,7 +72,7 @@ dashboardPage(
     tags$head(tags$script(src="js/table.js")),
     shinyjs::useShinyjs(),
     extendShinyjs(text = jsCode),
-
+    useSweetAlert(),
     
     tabItems(
       
@@ -84,6 +84,7 @@ dashboardPage(
                   status = "primary",
                   width = 12,
                   withSpinner(DT::dataTableOutput("data")),
+                  bsAlert("alert"),
                   modalAbout
                   
                 )
