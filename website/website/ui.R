@@ -15,15 +15,51 @@ jsCode <-
     }"
 
 dbHeader <- dashboardHeader(title = "ICHNAEA",
-                            tags$li(a(href = '',
-                                      img(icon("question"), "Help", height = "30px"),
-                                      style = "padding-top:10px; padding-bottom:10px;"),
-                                    class = "dropdown"),
-                            tags$li(a(href = '',
-                                      img(icon("info-circle"), "About", height = "30px"),
-                                      style = "padding-top:10px; padding-bottom:10px;"),
-                                      class = "dropdown")
-                            )
+                            tags$li(HTML( 
+                                  "<a href='www/manual.txt' style='padding-top:10px; padding-bottom:10px;' download>
+                                    <img height='30px'>
+                                      <i class='fa fa-question' style='height:30px;'></i> Help 
+                                  </a>"),  
+                                  class = "dropdown"),
+                            tags$li(HTML( 
+                              "<a href='' style='padding-top:10px; padding-bottom:10px;'  data-toggle='modal' data-target='#myModal'>
+                                    <img height='30px'>
+                                      <i class='fa fa-info-circle' style='height:30px;'></i> About 
+
+                               </a>"),  
+                              class = "dropdown"))
+                      
+
+
+modalAbout <- HTML("
+<!-- Modal -->
+  <div id='myModal' class='modal fade' role='dialog'>
+  <div class='modal-dialog'>
+  
+  <!-- Modal content-->
+  <div class='modal-content'>
+  <div class='modal-header'>
+  <button type='button' class='close' data-dismiss='modal'>&times;</button>
+  <h4 class='modal-title'>About this website</h4>
+  </div>
+  <div class='modal-body'>
+  <p> 
+
+    <center>
+      <img src='img/logo_ub.png' style='width:250px;'/>
+      <img src='img/logo_upc.png' style='width:250px;'/>
+    </center>
+    This website is possible thanks to the efforts made by Universitat Politècnica de Catalunya and Universitat of Barcelona.
+  </p>
+  </div>
+  <div class='modal-footer'>
+  <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
+  </div>
+  </div>
+  
+  </div>
+  </div>
+")
 
 options(shiny.sanitize.errors = FALSE)
 dashboardPage(
@@ -47,7 +83,8 @@ dashboardPage(
                   title = "Microbiological Data",
                   status = "primary",
                   width = 12,
-                  withSpinner(DT::dataTableOutput("data"))
+                  withSpinner(DT::dataTableOutput("data")),
+                  modalAbout
                   
                 )
 
