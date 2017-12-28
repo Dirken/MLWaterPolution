@@ -23,7 +23,7 @@ observeEvent(input$file,{
     # User has not uploaded a file yet
     sendSweetAlert(
       session = session,
-      title = "Error !!",
+      title = "Error",
       text = "File is null",
       type = "error"
     )
@@ -38,9 +38,8 @@ observeEvent(input$file,{
   names(argList) <- gsub(paste0("^",input$readFunction,"__"),"",args)
   
   argList <- argList[names(argList) %in% ArgNames()]
+  Dataset$data <- as.data.frame(do.call(input$readFunction,c(list(input$file$datapath),argList,  stringsAsFactors=FALSE)))
   
-  Dataset$data <- do.call(input$readFunction,c(list(input$file$datapath),argList,  stringsAsFactors=FALSE))
-
   Dataset$data <- sapply(Dataset$data, 
                          function(x){
                            if(is.numeric(x)) {scientific(as.numeric(x)) }
@@ -50,7 +49,6 @@ observeEvent(input$file,{
                              x
                            }
                          }  )
-  #id <<- showNotification(paste("Succesfully loaded"), duration = 5, type="message")
   newrow <- "Undefined season"
   if(input$model != TRUE){
     print(input$model)
@@ -70,9 +68,18 @@ observeEvent(input$file,{
 
     Dataset$data <-insertRow2(Dataset$data, newrow ,1)
   }
+  # validate({
+  #   need(input$file,     
+  #        sendSweetAlert(
+  #     session = session,
+  #     title = "Error!!",
+  #     text = "Could not be loaded",
+  #     type = "error"
+  #   ))
+  # })
   sendSweetAlert(
     session = session,
-    title = "Success !!",
+    title = "Success!!",
     text = "File was load successfully",
     type = "success"
   )
