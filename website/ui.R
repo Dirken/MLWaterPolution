@@ -68,8 +68,7 @@ dashboardPage(
     sidebarMenuOutput("Semi_collapsible_sidebar")
   ),
   dashboardBody(
-    tags$head(tags$link(rel = "stylesheet", type = "text/css", href = "css/custom-bootstrap.css")),
-    tags$head(tags$script(src="js/table.js")),
+    tags$head(tags$link(rel = "stylesheet", type = "text/css", href = "css/styles.css")),
     shinyjs::useShinyjs(),
     extendShinyjs(text = jsCode),
     useSweetAlert(),
@@ -84,7 +83,7 @@ dashboardPage(
                   status = "primary",
                   width = 12,
                   withSpinner(DT::dataTableOutput("data")),
-                  #bsAlert("alert"),
+                  # bsAlert("alert"),
                   modalAbout
                   
                 )

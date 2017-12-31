@@ -3,22 +3,22 @@ shinyServer(function(input, output,session) {
 
   Dataset <- reactiveValues()
   # Loading table
-  source("files/loadingTable.R",local=TRUE)
+  source("files/webDesign/loadingTable.R",local=TRUE)
   
   # Dialog popup
-  source("files/dialog.R",local=TRUE)
+  source("files/webDesign/dialog.R",local=TRUE)
   
   # Reactive plot
-  source("files/reactivePlot.R", local = TRUE)
+  source("files/webDesign/reactivePlot.R", local = TRUE)
 
   # Selecting folder and file reactive
-  source("files/folderfileReactive.R", local = TRUE)
+  source("files/webDesign/folderfileReactive.R", local = TRUE)
   
   # Rendering table
-  source("files/table.R", local = TRUE)
+  source("files/webDesign/table.R", local = TRUE)
   
   # Menu shinydashboard
-  source("files/menu.R", local = TRUE)
+  source("files/webDesign/menu.R", local = TRUE)
   
   #ML part
   # source("files/Analisi-lin.R", local = TRUE)

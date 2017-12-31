@@ -1,17 +1,17 @@
 ################################
 # InsertRow
 ################################
-source("files/insertRow.R", local = TRUE)
+source("files/webDesign/insertRow.R", local = TRUE)
 
 ################################
 # Aux loading table
 ################################
-source("files/auxLoadingTable.R", local = TRUE)
+source("files/webDesign/auxLoadingTable.R", local = TRUE)
 
 ################################
 # Menu creation 
 ################################
-source("files/menu.R", local = TRUE)
+source("files/webDesign/menu.R", local = TRUE)
 
 ################################
 # File Loading
@@ -38,6 +38,7 @@ observeEvent(input$file,{
   names(argList) <- gsub(paste0("^",input$readFunction,"__"),"",args)
   
   argList <- argList[names(argList) %in% ArgNames()]
+  
   Dataset$data <- as.data.frame(do.call(input$readFunction,c(list(input$file$datapath),argList,  stringsAsFactors=FALSE)))
   
   Dataset$data <- sapply(Dataset$data, 

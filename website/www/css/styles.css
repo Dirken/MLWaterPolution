@@ -1,0 +1,13 @@
+.right{
+  float: right;
+}
+.left{
+  float: left;
+}
+
+.buttons-columnVisibility.active{
+  background:cornflowerblue;
+}
+.llistes{
+  display: flex;
+}

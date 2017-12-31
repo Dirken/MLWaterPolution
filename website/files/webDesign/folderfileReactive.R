@@ -2,9 +2,9 @@
 # Selecting folder and file reactive
 ####################################
 
-source("files/dialog.R", local = TRUE)
+source("files/webDesign/dialog.R", local = TRUE)
 #root <- "/home/dirken/MLWaterPolution/website/website/persist" 
-root <- "C:/Users/Dirken/Downloads/UNI/MLWaterPolution/website/website/new-persist" 
+root <- "C:/Users/Dirken/Downloads/UNI/MLWaterPolution/website/new-persist" 
 #root <- "C:/Users/Meyerhofer/Downloads/UNI/MLWaterPolution/website/website/persist"
 
 

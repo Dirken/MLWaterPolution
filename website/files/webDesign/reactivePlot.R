@@ -2,7 +2,7 @@
 # Reactive plot
 ################################
  
- source("files/dialog.R", local = TRUE)
+ source("files/webDesign/dialog.R", local = TRUE)
  
 observeEvent(input$filename, {
   output$plot <- reactive({
