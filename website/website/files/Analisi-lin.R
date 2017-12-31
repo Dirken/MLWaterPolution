@@ -1,6 +1,6 @@
 # Aquavalens final analysis July 2017
 
-aqua17 <- read.csv(file="DATA/AQV_Fase1_final_10ml_Totes_variables_170619.csv",
+aqua17 <- read.csv(file="C:/Users/Dirken/Downloads/UNI/MLWaterPolution/website/toIntegrate/RicardM/AQV_Fase1_final_10ml_Totes_variables_170619.csv",
                    header = TRUE, sep = ";", dec=",", check.names = TRUE, 
                    stringsAsFactors = FALSE)
 
@@ -89,7 +89,7 @@ dim(aqua17)
 
 #These are the log values:
 
-detectors  <- read.table("log-detectors.tsv",header = TRUE, sep = "\t", dec=".", stringsAsFactors = FALSE)
+detectors  <- read.table("C:/Users/Dirken/Downloads/UNI/MLWaterPolution/website/toIntegrate/RicardM/log-detectors.tsv",header = TRUE, sep = "\t", dec=".", stringsAsFactors = FALSE)
 
 colnames(detectors)[1] <- "Site"
 
@@ -118,13 +118,13 @@ aged_samples_lr <- function( season , orig_data , correction , mean_coef , plot 
                   "HMBif", "CWBif", "PGNeo", "PLBif","TLBif", "NoV") ){
     
     # reading all the samples for the corresponding attribute and season, BifMol tab
-    aged_samples_file_name <- paste( "persist/" , attr , "-" , season , ".txt" , sep = "" )
+    aged_samples_file_name <- paste( "C:/Users/Dirken/Downloads/UNI/MLWaterPolution/website/website/persist/mediterrani/" , attr , "-" , season , ".txt" , sep = "" )
     if(attr %in% c("TLBif", "HMBif", "CWBif", "PGNeo", "PLBif") ){
-      aged_samples_file_name <- paste( "persist/" , "BifMol" , "-" , season , ".txt" , sep = "" )
+      aged_samples_file_name <- paste( "C:/Users/Dirken/Downloads/UNI/MLWaterPolution/website/website/persist/mediterrani/" , "BifMol" , "-" , season , ".txt" , sep = "" )
     }
     # reading all the samples for the corresponding attribute and season, BactPhg tab
     if(attr %in% c("HMBactPhg","CWBactPhg","PGBactPhg","PLBactPhg") ){
-      aged_samples_file_name <- paste( "persist/" , "BactPhg" , "-" , season , ".txt" , sep = "" )
+      aged_samples_file_name <- paste( "C:/Users/Dirken/Downloads/UNI/MLWaterPolution/website/website/persist/mediterrani/" , "BactPhg" , "-" , season , ".txt" , sep = "" )
     }
     
     aged_samples <- read.csv( blank.lines.skip=TRUE, file = aged_samples_file_name , header = FALSE , sep = "" , col.names = c( "time" , "value" ), comment.char="#",dec = ","  )    
@@ -302,7 +302,7 @@ text (aqua17$HMBif, aqua17$HF183TaqMan, col=as.numeric(aqua17$CLASS), cex=0.75, 
 
 #### Ara caldria anar treient variables
 
-source ("FSS.R")
+source ("C:/Users/Dirken/Downloads/UNI/MLWaterPolution/website/toIntegrate/RicardM/FSS.R")
 
 FSS.data <- aqua17[,c(modeling.vars)]
 
@@ -310,7 +310,9 @@ FSS.data <- aqua17[,c(modeling.vars)]
 FSS.target <- aqua17$CLASS
 FSS.target.name <- "CLASS"
 
-subset <- forward.search (names(FSS.data), evaluator.accuracy.LDA2)
+#subset <- forward.search (names(FSS.data), evaluator.accuracy.LDA) aqui hi havia un 2 LDA2
+
+subset <- forward.search (names(FSS.data), evaluator.accuracy.LDA)
 subset <- best.first.search (names(aqua17)[modeling.vars], evaluator.accuracy.LDA)
 subset <- exhaustive.search (names(aqua17)[modeling.vars], evaluator.accuracy.LDA)
 

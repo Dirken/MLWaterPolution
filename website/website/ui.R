@@ -104,8 +104,7 @@ dashboardPage(
                   sliderInput("dissolution", label = "Dissolution",  min = 0, max = 9000, value = c(0,9000)),
                   
                   materialSwitch(inputId = "molecular", label = "Molecular variables?", status = "primary"),
-                  materialSwitch(inputId = "human", label = "Human vs no Human?", status = "primary"),
-                  
+
                   conditionalPanel(condition = "input.human == 0",
                      checkboxGroupButtons(
                        inputId = "somevalue", label = "Make a choice :", 

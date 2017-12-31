@@ -89,3 +89,7 @@
 .header{
   display:flex;
 }
+
+.buttons-columnVisibility.active{
+  background:cornflowerblue;
+}
