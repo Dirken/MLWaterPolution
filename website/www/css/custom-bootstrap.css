@@ -1,0 +1,54 @@
+.right{
+  float: right !important;
+}
+.left{
+  float: left;
+}
+.down{
+  bottom: 15%;
+  position: relative;
+}
+.center{
+  margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.small{
+  width: 50px;
+  height: 50px;
+}
+.asdf{
+  list-style: none;
+  display: inline-flex;
+  height:auto;
+}
+.middle{
+    margin-top: 7.5%;
+
+}
+.big-dot{
+  width: 10px;
+}
+
+#shiny-modal.modal-dialog { 
+  width: 50%;
+}
+
+
+.modal-dialog{
+  width:  75%;
+  
+}
+#plot.shiny-html-output.shiny-bound-output{
+  display: flex;
+}
+
+.buttons-columnVisibility.active{
+  background:cornflowerblue;
+}
+.llistes{
+  display: flex;
+}

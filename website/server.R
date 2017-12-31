@@ -19,7 +19,10 @@ shinyServer(function(input, output,session) {
   
   # Menu shinydashboard
   source("files/menu.R", local = TRUE)
-
+  
+  #ML part
+  # source("files/Analisi-lin.R", local = TRUE)
+  
 })
 
 

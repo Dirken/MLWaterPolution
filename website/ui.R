@@ -68,7 +68,7 @@ dashboardPage(
     sidebarMenuOutput("Semi_collapsible_sidebar")
   ),
   dashboardBody(
-    tags$head(tags$link(rel = "stylesheet", type = "text/css", href = "styles.css")),
+    tags$head(tags$link(rel = "stylesheet", type = "text/css", href = "css/custom-bootstrap.css")),
     tags$head(tags$script(src="js/table.js")),
     shinyjs::useShinyjs(),
     extendShinyjs(text = jsCode),
@@ -84,7 +84,7 @@ dashboardPage(
                   status = "primary",
                   width = 12,
                   withSpinner(DT::dataTableOutput("data")),
-                  bsAlert("alert"),
+                  #bsAlert("alert"),
                   modalAbout
                   
                 )
@@ -98,20 +98,46 @@ dashboardPage(
                   status = "primary",
                   width = 12,
                   materialSwitch(inputId = "pointSource", label = "Point source?", status = "primary"),
+                  materialSwitch(inputId = "molecular", label = "Molecular variables?", status = "primary"),
+                  
                   conditionalPanel(condition = "input.pointSource == 0",
                     sliderInput("aging", label = "Aged",  min = 0, max = 9000, value = c(0,9000))
                   ),
                   sliderInput("dissolution", label = "Dissolution",  min = 0, max = 9000, value = c(0,9000)),
                   
-                  materialSwitch(inputId = "molecular", label = "Molecular variables?", status = "primary"),
 
-                  conditionalPanel(condition = "input.human == 0",
                      checkboxGroupButtons(
                        inputId = "somevalue", label = "Make a choice :", 
                        choices = c("Chicken", "Cow", " Poltry"), 
                        justified = TRUE, status = "primary",
                        checkIcon = list(yes = icon("ok", lib = "glyphicon"), no = icon("remove", lib = "glyphicon"))
-                     )
+                     ),
+                  div(class="llistes",
+                    pickerInput(
+                      inputId = "myPicker", 
+                      label = "Select/deselect all + format selected", 
+                      choices = LETTERS, 
+                      options = list(
+                        `actions-box` = TRUE, 
+                        size = 10,
+                        `selected-text-format` = "count > 3"
+                      ), 
+                      multiple = TRUE
+                    ),
+                    pickerInput(
+                      inputId = "myPicker2", 
+                      label = "Select/deselect all + format selected", 
+                      choices = LETTERS, 
+                      options = list(
+                        `actions-box` = TRUE, 
+                        size = 10,
+                        `selected-text-format` = "count > 3"
+                      ), 
+                      multiple = TRUE
+                    )
+                  ),
+                  div(class="right",
+                      submitButton("Generate matrix", icon = icon("arrow-right"))
                   )
                 )
         ),
@@ -121,29 +147,28 @@ dashboardPage(
                   title = "Creation of a predictive model",
                   status = "primary",
                   width = 12
-                 
                 )
-                ),
+        ),
                 
         
         tabItem("tab3",
-                  title = "Visualization",
-                  status = "primary",
-                  fluidRow(
-                    column(
-                      width = 6,
-                      box(title = "a1", status = "primary"),
-                      box(title = "a2",status = "primary")
-                    ),
-                    column(
-                      width = 6,
-                      box(
-                        title = "a3",
-                        status = "primary"
-                       )
-                      )
-                    )
-                )
+        title = "Visualization",
+        status = "primary",
+          fluidRow(
+            column(
+              width = 6,
+              box(title = "a1", status = "primary"),
+              box(title = "a2",status = "primary")
+            ),
+            column(
+              width = 6,
+              box(
+                title = "a3",
+                status = "primary"
+             )
+            )
+          )
+        )
 
 
         
