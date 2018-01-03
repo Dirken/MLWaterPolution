@@ -29,10 +29,11 @@ output$Semi_collapsible_sidebar<-renderMenu({
   sidebarMenu(id = "tab",
               menuItem("Table", tabName = "tab1",icon = icon("table")),
               menuItem("Scenario", tabName = "tab22", icon = icon("gears")),
-              menuItem("Modeling", tabName = "tab2", icon = icon("line-chart")),
+              menuItem("Modelling", tabName = "tab2", icon = icon("line-chart")),
               menuItem("Visualization", tabName = "tab3",icon = icon("eye")),
+              div(class="opcions",
               conditionalPanel("input.tab == 'tab1'",
-                               div(class="opcions",
+                               
                  materialSwitch(inputId = "model", label = "Do you have a model?", status = "primary"),
                  # input$model,
                    selectInput("readFunction", "Format to read", c(
@@ -71,7 +72,15 @@ output$Semi_collapsible_sidebar<-renderMenu({
                    # Upload data:
                    fileInput("file", "Browse file"),
                    htmlOutput('response2')
-                 ))
+                 ),
+              conditionalPanel("input.tab == 'tab2'",
+                               actionBttn(inputId = "downloadBigMatrix", label = "Download BIGMATRIX", size = "sm",
+                                          icon = icon("download"), color = "primary", style = "jelly")
+              )
+              
+              )
+              
+              
   )
   
   

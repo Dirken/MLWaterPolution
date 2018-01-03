@@ -14,6 +14,57 @@ console.log(document.getElementById('filename').value);
 });
 }"
 
+predictValues <- c("Cow", "Human", "Pig", "Poltry")
+
+customSentence <- function(numItems, type) {
+  paste("Selecciona el teu idioma")
+}
+
+
+# Function to call in place of dropdownMenu
+dropdownMenuCustom <-     function (..., type = c("messages", "notifications", "tasks"), 
+                                    badgeStatus = "primary", icon = NULL, .list = NULL, customSentence = customSentence) 
+{
+  type <- match.arg(type)
+  if (!is.null(badgeStatus)) shinydashboard:::validateStatus(badgeStatus)
+  items <- c(list(...), .list)
+  lapply(items, shinydashboard:::tagAssert, type = "li")
+  dropdownClass <- paste0("dropdown ", type, "-menu")
+  if (is.null(icon)) {
+    icon <- switch(type, messages = shiny::icon("envelope"), 
+                   notifications = shiny::icon("warning"), tasks = shiny::icon("tasks"))
+  }
+  numItems <- length(items)
+  if (is.null(badgeStatus)) {
+    badge <- NULL
+  }
+  else {
+    badge <- span(class = paste0("label label-", badgeStatus), 
+                  numItems)
+  }
+  tags$li(
+    class = dropdownClass, 
+    a(
+      href = "#", 
+      class = "dropdown-toggle", 
+      `data-toggle` = "dropdown", 
+      icon, 
+      badge
+    ), 
+    tags$ul(
+      class = "dropdown-menu", 
+      tags$li(
+        class = "header", 
+        customSentence(numItems, type)
+      ), 
+      tags$li(
+        tags$ul(class = "menu", items)
+      )
+    )
+  )
+}
+
+
 dbHeader <- dashboardHeader(title = "ICHNAEA",
                             tags$li(HTML( 
                               "<a href='www/manual.txt' style='padding-top:10px; padding-bottom:8px;' download>
@@ -27,7 +78,14 @@ dbHeader <- dashboardHeader(title = "ICHNAEA",
                               <i class='fa fa-info-circle' style='height:30px;'></i> About 
                               
                               </a>"),  
-                              class = "dropdown"))
+                              class = "dropdown"),
+                            tags$li(HTML( 
+                              "<a href='' style='padding-top:10px; padding-bottom:8px;'>
+                              <img height='20px'>
+                              <i class='fa fa-language' style='height:30px;'></i> Languages</a>"),
+                              class = "dropdown")
+                            
+                            )
 
 
 
@@ -67,6 +125,8 @@ dashboardPage(
   dashboardSidebar(
     sidebarMenuOutput("Semi_collapsible_sidebar")
   ),
+                
+ 
   dashboardBody(
     tags$head(tags$link(rel = "stylesheet", type = "text/css", href = "css/styles.css")),
     tags$head(tags$script(src="js/table.js")),
@@ -115,7 +175,7 @@ dashboardPage(
                       pickerInput(
                         inputId = "myPicker",
                         label = "Select predicts",
-                        choices = LETTERS,
+                        choices = predictValues,
                         options = list(
                           `actions-box` = TRUE,
                           size = 10,
@@ -129,8 +189,8 @@ dashboardPage(
                     div(class="column2",
                       pickerInput(
                         inputId = "myPicker2",
-                        label = "Select/deselect all + format selected",
-                        choices = LETTERS,
+                        label = "Select vs predicts",
+                        choices = predictValues,
                         options = list(
                           `actions-box` = TRUE,
                           size = 10,
@@ -156,7 +216,9 @@ dashboardPage(
                             label = "Algorithm to apply", 
                             choices = c("LDA", "QDA"), 
                             options = list(title = "Choose your algorithm ")
-                )
+                ),
+                HTML("<hr class='style11'>")
+                # withSpinner(DT::dataTableOutput("data")) mostrar la bigmatrix
                 
                 
               )
@@ -169,9 +231,8 @@ dashboardPage(
               status = "primary",
               fluidRow(
                 column(
-                  width = 6,
-                  box(title = "a1", status = "primary"),
-                  box(title = "a2",status = "primary")
+                  width = 12,
+                  box(title = "Visualization", status = "primary")
                 )
               )
       )

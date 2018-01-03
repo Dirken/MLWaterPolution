@@ -27,3 +27,10 @@
 .vs-titol{
   margin-left:15%;
 }
+body { padding-right: 0 !important }
+
+hr.style11{
+   height: 10px;
+   border: 0;
+   box-shadow: 0 10px 10px -10px #3c8dbc inset;
+  }
