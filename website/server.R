@@ -20,6 +20,11 @@ shinyServer(function(input, output,session) {
   # Menu shinydashboard
   source("files/webDesign/menu.R", local = TRUE)
   
+  
+  observeEvent(input$generateMatrix,{
+    updateTabItems(session, "tab", selected = "tab2")
+  })
+  
   #ML part
   # source("files/Analisi-lin.R", local = TRUE)
   

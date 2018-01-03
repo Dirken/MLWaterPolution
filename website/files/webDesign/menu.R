@@ -29,8 +29,10 @@ output$Semi_collapsible_sidebar<-renderMenu({
   sidebarMenu(id = "tab",
               menuItem("Table", tabName = "tab1",icon = icon("table")),
               menuItem("Scenario", tabName = "tab22", icon = icon("gears")),
-              menuItem("Modelling", tabName = "tab2", icon = icon("line-chart")),
-              menuItem("Visualization", tabName = "tab3",icon = icon("eye")),
+              conditionalPanel(condition = "input.generateMatrix >=1",    
+                 sidebarMenu( menuItem("Modelling", tabName = "tab2", icon = icon("line-chart"))),
+                 sidebarMenu( menuItem("Visualization", tabName = "tab3",icon = icon("eye")))
+              ),
               div(class="opcions",
               conditionalPanel("input.tab == 'tab1'",
                                

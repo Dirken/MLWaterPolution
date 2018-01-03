@@ -159,7 +159,7 @@ dashboardPage(
                 width = 12,
                 div(class="llistes",
                     
-                    div(class="column1",materialSwitch(inputId = "pointSource", label = "Point source?", status = "primary")),
+                  div(class="column1",materialSwitch(inputId = "pointSource", label = "Point source?", status = "primary")),
                   div(class="column2",materialSwitch(inputId = "molecular", label = "Molecular variables?", status = "primary"))
                 ),
                 

@@ -27,8 +27,7 @@ observeEvent(input$filename, {
                              dec = ",",
                              header = FALSE,
                              strip.white = TRUE)
-        glmvar <- lm(formula = document[,1] ~ document[,2],data=document)
-        output[[plotname]]  <- ggplot(glmvar, aes(x = document[,1] ) +
+        output[[plotname]]  <- ggplot(lm(formula = document[,1] ~ document[,2],data=document), aes(x =document[,1], y =document[,2],  ) +
           geom_histogram())
         # glmOutput <- scatter.smooth(document[,1] ~ document[,2], span = 2/3, degree = 1, xlim = 2500, ylim = 2500)
         
