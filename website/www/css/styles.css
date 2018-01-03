@@ -6,7 +6,7 @@
 }
 
 .buttons-columnVisibility.active{
-  background:cornflowerblue;
+  background: #3c8dbc !important;
 }
 .llistes{
   display: flex;

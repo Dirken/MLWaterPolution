@@ -31,7 +31,7 @@ output$Semi_collapsible_sidebar<-renderMenu({
               menuItem("Scenario", tabName = "tab22", icon = icon("gears")),
               menuItem("Modeling", tabName = "tab2", icon = icon("line-chart")),
               menuItem("Visualization", tabName = "tab3",icon = icon("eye")),
-              # conditionalPanel("input.tab == 'tab1'",
+              conditionalPanel("input.tab == 'tab1'",
                                div(class="opcions",
                  materialSwitch(inputId = "model", label = "Do you have a model?", status = "primary"),
                  # input$model,
@@ -72,7 +72,7 @@ output$Semi_collapsible_sidebar<-renderMenu({
                    fileInput("file", "Browse file"),
                    htmlOutput('response2')
                  ))
-  # )
+  )
   
   
 })
