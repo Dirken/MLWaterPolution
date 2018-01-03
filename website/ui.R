@@ -97,39 +97,52 @@ dashboardPage(
                 title = "Choosing variables to create a model",
                 status = "primary",
                 width = 12,
-                materialSwitch(inputId = "pointSource", label = "Point source?", status = "primary"),
+                div(class="llistes",
+                    
+                    div(class="column1",materialSwitch(inputId = "pointSource", label = "Point source?", status = "primary")),
+                  div(class="column2",materialSwitch(inputId = "molecular", label = "Molecular variables?", status = "primary"))
+                ),
+                
                 conditionalPanel(condition = "input.pointSource == 0",
                                  sliderInput("aging", label = "Aged",  min = 0, max = 9000, value = c(0,9000))
                 ),
-                sliderInput("dissolution", label = "Dissolution",  min = 0, max = 9000, value = c(0,9000)),
+                sliderInput("matrixSize", label = "Matrix Size",  min = 0, max = 9000, value = c(0,9000)),
                 
-                materialSwitch(inputId = "molecular", label = "Molecular variables?", status = "primary"),
+                sliderInput("dissolution", label = "Dissolution",  min = 0, max = 9000, value = c(0,9000)),
+                p(class="titol" ,"Predict "), br(),
                 div(class="llistes",
-                    pickerInput(
-                      inputId = "myPicker",
-                      label = "Select/deselect all + format selected",
-                      choices = LETTERS,
-                      options = list(
-                        `actions-box` = TRUE,
-                        size = 10,
-                        `selected-text-format` = "count > 3"
-                      ),
-                      multiple = TRUE
+                    div(class="column1",
+                      pickerInput(
+                        inputId = "myPicker",
+                        label = "Select predicts",
+                        choices = LETTERS,
+                        options = list(
+                          `actions-box` = TRUE,
+                          size = 10,
+                          `selected-text-format` = "count > 3"
+                        ),
+                        multiple = TRUE
+                      )
+                    
                     ),
-                    pickerInput(
-                      inputId = "myPicker2",
-                      label = "Select/deselect all + format selected",
-                      choices = LETTERS,
-                      options = list(
-                        `actions-box` = TRUE,
-                        size = 10,
-                        `selected-text-format` = "count > 3"
-                      ),
-                      multiple = TRUE
+                    p(class="vs-titol", "VS"),
+                    div(class="column2",
+                      pickerInput(
+                        inputId = "myPicker2",
+                        label = "Select/deselect all + format selected",
+                        choices = LETTERS,
+                        options = list(
+                          `actions-box` = TRUE,
+                          size = 10,
+                          `selected-text-format` = "count > 3"
+                        ),
+                        multiple = TRUE
+                      )
                     )
                 ),
                 div(class="right",
-                  actionBttn(inputId = "generateMatrix", label = "Generate BIGMATRIX", icon = icon("cog"), color = "primary", style = "jelly")
+                  actionBttn(inputId = "generateMatrix", label = "Generate BIGMATRIX", 
+                             icon = icon("cog"), color = "primary", style = "jelly")
                 )
               )
       ),
@@ -138,11 +151,14 @@ dashboardPage(
               box(
                 title = "Creation of a predictive model",
                 status = "primary",
-                width = 12
+                width = 12,
+                pickerInput(inputId = "algorithm", 
+                            label = "Algorithm to apply", 
+                            choices = c("LDA", "QDA"), 
+                            options = list(title = "Choose your algorithm ")
+                )
                 
-              ),
-              conditionalPanel(condition = "input.generateMatrix %% 2 == 0",
-                "hola"
+                
               )
               
       ),
@@ -156,13 +172,6 @@ dashboardPage(
                   width = 6,
                   box(title = "a1", status = "primary"),
                   box(title = "a2",status = "primary")
-                ),
-                column(
-                  width = 6,
-                  box(
-                    title = "a3",
-                    status = "primary"
-                  )
                 )
               )
       )
