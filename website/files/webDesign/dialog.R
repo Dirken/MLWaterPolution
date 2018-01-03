@@ -11,6 +11,11 @@ observeEvent(input$show, {
                          label = "Which plot would you like?", 
                          choices = c("lm","scatter"), icon = icon("check"), inline = TRUE, 
                          status = "primary", fill = TRUE, animation = "jelly"),
+                 prettyRadioButtons(inputId = "Id039", 
+                                    label = "Choose:", choices = c("Click me !", 
+                                                                   "Me !", "Or me !"), icon = icon("check"), 
+                                    bigger = TRUE, status = "info", 
+                                    animation = "jelly"),
                  #uiOutput('select.folder'),
                  uiOutput('select.file'),
                  prettyRadioButtons(inputId = "Id037", 
@@ -23,7 +28,7 @@ observeEvent(input$show, {
     ),
     mainPanel(
 
-      withSpinner(uiOutput("plot"))
+      withSpinner(plotOutput("plot"))
 
     ),
     easyClose = TRUE,
