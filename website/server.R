@@ -2,6 +2,9 @@
 shinyServer(function(input, output,session) {
 
   Dataset <- reactiveValues()
+  ###############################################
+  # Website Design
+  ###############################################
   # Loading table
   source("files/webDesign/loadingTable.R",local=TRUE)
   
@@ -20,11 +23,9 @@ shinyServer(function(input, output,session) {
   # Menu shinydashboard
   source("files/webDesign/menu.R", local = TRUE)
   
-  
-  observeEvent(input$generateMatrix,{
-    updateTabItems(session, "tab", selected = "tab2")
-  })
-  
+  ###############################################
+  # Machine Learning
+  ###############################################
   #ML part
   # source("files/Analisi-lin.R", local = TRUE)
   

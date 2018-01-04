@@ -47,3 +47,7 @@ shinyInput <- function(FUN, len, id, ...) {
   inputs
 }
 
+
+observeEvent(input$generateMatrix,{
+  updateTabItems(session, "tab", selected = "tab2")
+})

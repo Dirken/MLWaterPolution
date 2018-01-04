@@ -78,8 +78,11 @@ output$Semi_collapsible_sidebar<-renderMenu({
               conditionalPanel("input.tab == 'tab2'",
                                actionBttn(inputId = "downloadBigMatrix", label = "Download BIGMATRIX", size = "sm",
                                           icon = icon("download"), color = "primary", style = "jelly")
+              ),
+              conditionalPanel("input.tab == 'tab22'",
+                               actionBttn(inputId = "loadBigMatrix", label = "Load BIGMATRIX", size = "sm",
+                                          icon = icon("upload"), color = "primary", style = "jelly")
               )
-              
               )
               
               
