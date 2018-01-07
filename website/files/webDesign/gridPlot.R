@@ -10,8 +10,9 @@
 #
 # source("files/webDesign/reactivePlot.R", local = TRUE)
 
+#NOT BEING USED CURRENTLY, for future iterations maybe
 
-multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
+multiplot <- function(..., plotlist=NULL, file, cols=2, layout=NULL) {
   library(grid)
   
   # Make a list from the ... arguments and plotlist
@@ -48,35 +49,3 @@ multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
 }
 
 
-
-
-# 
-# ####
-# 
-# # Call renderPlot for each one. Plots are only actually generated when they
-# # are visible on the web page.
-# for (i in 1:max_plots) {
-#   # Need local so that each item gets its own number. Without it, the value
-#   # of i in the renderPlot() will be the same across all instances, because
-#   # of when the expression is evaluated.
-#   local({
-#     my_i <- i
-#     plotname <- paste("plot", my_i, sep="")
-#     #print(input$filename)
-#     arrayFiles <- list.files(file.path(root, colnames(Dataset$data)[input$data_cell_clicked[2]$col+1],input$filename))
-#     #print(file.path(list.dirs(file.path(root, colnames(Dataset$data)[input$data_cell_clicked[2]$col+1]))[2]),input$filename)
-#     print(arrayFiles[1])
-#     print(file.path(root, colnames(Dataset$data)[input$data_cell_clicked[2]$col+1],input$filename,arrayFiles[my_i]))
-#     
-#     document <- read.csv(file.path(root, colnames(Dataset$data)[input$data_cell_clicked[2]$col+1],input$filename,arrayFiles[my_i]),
-#                          sep="\t", 
-#                          dec = ",",
-#                          header = FALSE,
-#                          strip.white = TRUE)
-#     output[[plotname]] <- 
-#       # ggplotRegression(lm(formula = document[,1] ~ document[,2],data=document))
-#       ggplotRegression(lm(Sepal.Length ~ Petal.Width, data = iris))
-#     
-#     
-#   })
-# }

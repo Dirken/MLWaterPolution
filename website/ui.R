@@ -4,6 +4,7 @@ library(shinyBS)
 library(shinyjqui)
 library(shinycssloaders)
 library(shinyWidgets)
+library(gridExtra)
 #library(ECharts2Shiny)
 
 jsCode <- 
