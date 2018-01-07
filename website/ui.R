@@ -508,6 +508,8 @@ dashboardPage(
  
   dashboardBody(
     tags$head(tags$link(rel = "stylesheet", type = "text/css", href = "css/styles.css")),
+    tags$head(tags$link(rel = "stylesheet", type = "text/css", href = "css/prettyfy.css")),
+    
     tags$head(tags$script(src="js/table.js")),
     shinyjs::useShinyjs(),
     extendShinyjs(text = jsCode),

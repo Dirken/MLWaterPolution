@@ -42,11 +42,16 @@ observeEvent(input$filename, {
                              header = FALSE,
                              strip.white = TRUE)
         output[[plotname]] <- renderPlot({
-          glmOutput <- lm(formula = document[,1] ~ document[,2],data=document)
-          plot(glmOutput)
+          if (input$plotChooser == "lm"){
+            aux <- lm(formula= document[,1] ~ document[,2], data = document, )
+            plot(aux, which=c(1,1))
+          }
+           else{
+            scatter.smooth(document)
+          }
+          
         })
-        
-      })
+    })
     }
     
   })

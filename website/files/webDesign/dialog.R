@@ -7,21 +7,17 @@ observeEvent(input$show, {
     title = "Select location:",
     
     sidebarPanel(
-                 prettyRadioButtons(inputId = "choosePlot",
+      
+                 prettyRadioButtons(inputId = "plotChooser",
                          label = "Which plot would you like?",
                          choices = c("lm","scatter"), icon = icon("check"), inline = TRUE,
-                         status = "primary", fill = TRUE, animation = "jelly"),
-                 prettyRadioButtons(inputId = "Id039",
-                                    label = "Choose:", choices = c("Click me !",
-                                                                   "Me !", "Or me !"), icon = icon("check"),
-                                    bigger = TRUE, status = "info",
-                                    animation = "jelly"),
+                         status = "primary", fill = TRUE,  bigger = TRUE, animation = "jelly"),
                  #uiOutput('select.folder'),
                  uiOutput('select.file'),
-                 prettyRadioButtons(inputId = "location",
+                 prettyRadioButtons(inputId = "locationChooser",
                                     label = "Location data",
                                     choices = c("T99","T90", "Plain"), icon = icon("check"), inline = TRUE,
-                                    status = "primary", fill = TRUE, animation = "jelly"),
+                                    status = "primary", fill = TRUE,  bigger = TRUE, animation = "jelly"),
                  fileInput("file2", "Load location")
                  # shinyFilesButton('files', label='File select', title='Please select a file', multiple=FALSE)
                  # shinyDirButton("dir", "Use mine", "Upload")
