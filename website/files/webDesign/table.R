@@ -2,7 +2,6 @@ output$data <- DT::renderDataTable(
   Dataset$data, server = FALSE, escape = FALSE,    rownames = FALSE,
   callback=JS(' $(".dt-button").css("background","#3c8dbc");
               $(".dt-button").css("color","white");
-              $(".buttons-columnVisibility").css("background","cornflowerblue");
               return table;'
               )
   ,

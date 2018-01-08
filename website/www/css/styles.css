@@ -33,4 +33,30 @@ hr.style11{
    height: 10px;
    border: 0;
    box-shadow: 0 10px 10px -10px #3c8dbc inset;
-  }
+}
+.ellipsis {
+  text-overflow: ellipsis;
+
+  /* Required for text-overflow to do anything */
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
