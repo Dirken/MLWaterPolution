@@ -5,7 +5,7 @@
 source("files/webDesign/dialog.R", local = TRUE)
 
 observeEvent(input$filename, {
-  output$plot <- reactive({
+  output$uploaded <- reactive({
     
     max_plots <- length(list.files(file.path(root, colnames(Dataset$data)[input$data_cell_clicked[2]$col+1],input$filename)))
     # Insert the right number of plot output objects into the web page
@@ -45,6 +45,7 @@ observeEvent(input$filename, {
           if (input$plotChooser == "lm"){
             aux <- lm(formula= document[,1] ~ document[,2], data = document, )
             plot(aux, which=c(1,1))
+            
           }
            else{
             scatter.smooth(document)
@@ -81,8 +82,8 @@ observeEvent(input$file2, {
       local({
         my_i <- i
         plotname <- paste("plot", my_i, sep="")
+        document[my_i] <- read.csv(input$file2$datapath,     
 
-        document <- read.csv(,
                              sep="\t", 
                              dec = ",",
                              header = FALSE,
@@ -91,16 +92,15 @@ observeEvent(input$file2, {
           # K is exactly the slope. Now K = -1/T90 = -2/T99, whichever is given
           
           if (input$plotChooser == "T99"){
-            aux <- lm(formula= document[,1] ~ document[,2], data = document, )
-            plot(aux, which=c(1,1))
-            # plot(c(0,5), c(0,5), type = "n", xlab = "", ylab = "", bty='l')
-            # segments(x0, yo, x1, y1)
+            plot(-2,document[my_i][,1])
+            abline(-2,document[my_i][,1])
           }
           else if (input$plotChooser == "T90"){
-            scatter.smooth(document)
+            plot(-1,document[my_i][,1])
+            abline(-1,document[my_i][,1])
           }
           else{
-            scatter.smooth(document)
+            #scatter.smooth(document)
           }
           
         })

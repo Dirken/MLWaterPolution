@@ -7,7 +7,11 @@ observeEvent(input$show, {
     title = "Select location:",
     
     sidebarPanel(
-      
+      prettyRadioButtons(inputId = "alreadyLoaded",
+                         label = "Do you want to only consider the uploaded file?",
+                         choices = c("Yes","No"), icon = icon("check"), inline = TRUE,
+                         status = "primary", fill = TRUE,  bigger = TRUE, animation = "jelly"),
+      conditionalPanel(condition = "input.alreadyLoaded == 'No'",
                  prettyRadioButtons(inputId = "plotChooser",
                          label = "Which plot would you like?",
                          choices = c("lm","scatter"), icon = icon("check"), inline = TRUE,
@@ -17,7 +21,8 @@ observeEvent(input$show, {
                  prettyRadioButtons(inputId = "locationChooser",
                                     label = "Location data",
                                     choices = c("T99","T90", "(2 - log10(k))/T", "Plain Rehearsal"), icon = icon("check"), inline = TRUE,
-                                    status = "primary", fill = TRUE,  bigger = TRUE, animation = "jelly"),
+                                    status = "primary", fill = TRUE,  bigger = TRUE, animation = "jelly")
+      ),
                  HTML("<p style='font-size: 10px;'>To upload multiple files, press shift button"),
                  
                  fileInput("file2", "Load location", multiple = TRUE),
@@ -28,8 +33,10 @@ observeEvent(input$show, {
                  # shinyDirButton("dir", "Use mine", "Upload")
     ),
     mainPanel(
-      withSpinner(uiOutput("plot")),
-      p("Uploaded data"),
+      conditionalPanel(condition = "input.alreadyLoaded == 'No'",
+        withSpinner(uiOutput("plot"))
+      ),
+      HTML("<p style='font-weight: bold;'>Uploaded data</p>"),
       withSpinner(uiOutput("uploaded"))
     ),
     easyClose = TRUE,
