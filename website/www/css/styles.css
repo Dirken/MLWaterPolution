@@ -12,11 +12,14 @@
   display: flex;
 }
 
-.column1, .column2{
-  width: 40%;
+.column1, .column2, .column3{
+  width: 25%;
 }
-.column2{
-  margin-left:20%;
+.column2, .column3{
+  margin-left:10%;
+}
+.column3{
+  display:flex !important;
 }
 .titol, .vs-titol{
   text-transform: uppercase;

@@ -3,8 +3,8 @@ output$data <- DT::renderDataTable(
   callback=JS(' $(".dt-button").css("background","#3c8dbc");
               $(".dt-button").css("color","white");
               return table;'
-              )
-  ,
+              
+  ),
   extensions = "Buttons",selection = list(target = 'cell'),
   filter = list(position = 'top', clear = FALSE),
   options = list(

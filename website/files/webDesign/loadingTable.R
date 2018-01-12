@@ -51,6 +51,9 @@ observeEvent(input$file,{
                            }
                          }  )
   newrow <- "Undefined season"
+  predictValues <<- substr(Dataset$data[,1],4,5)
+  #print(Dataset$data[,1])
+  #print(predictValues)
   if(input$model != TRUE){
     print(input$model)
     newrow <- "Undefined season"
@@ -66,7 +69,7 @@ observeEvent(input$file,{
     
     newrow <- Dataset$data[1:1,]
     newrow <- shinyInput(actionButton, length(newrow), 'button_', label = "Season", onclick = 'Shiny.onInputChange(\"show\",  this.id)' )
-
+    
     Dataset$data <-insertRow2(Dataset$data, newrow ,1)
   }
   # validate({
