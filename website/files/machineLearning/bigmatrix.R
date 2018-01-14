@@ -188,7 +188,7 @@ combined.big <- rbind(aged_data_summer.big[[1]],aged_data_winter.big[[1]])     #
 aged_processed_data.big <- process( combined.big )                            
 aged_processed_data.no.ratios.big <- aged_processed_data.big$data.no.ratios
 
-M <- 10000
+M <- input$matrixSize
 
 #Let "alpha" denote the dilution degree of the observation and "t" denote the time in water.
 

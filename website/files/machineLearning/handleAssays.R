@@ -1,9 +1,9 @@
 #---------------------------------------------------------------------------------
-#STEP 3 HANDLE ASSAYS ( from Persist_150114.xls)
+#STEP 3 HANDLE ASSAYS
 #---------------------------------------------------------------------------------
 
 #EVERYTHING IS IDENTICAL EXCEPT NoV tab, I just needed to change the NoV files in the "persist" folder
-
+#this is what i should do when i save the data already.
 aged_samples_lr <- function( season , orig_data , correction , mean_coef , plot ){
   aged_samples_lr_list <- list()      # list that will be returned
   if ( plot ){ par( ask = TRUE ) }   # if plot is TRUE: requiring user key event to continue interpreting code

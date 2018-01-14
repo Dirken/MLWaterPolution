@@ -12,14 +12,11 @@
   display: flex;
 }
 
-.column1, .column2, .column3{
-  width: 25%;
+.column1, .column2{
+  width: 40%;
 }
-.column2, .column3{
-  margin-left:10%;
-}
-.column3{
-  display:flex !important;
+.column2{
+  margin-left:20%;
 }
 .titol, .vs-titol{
   text-transform: uppercase;
@@ -29,6 +26,9 @@
 }
 .vs-titol{
   margin-left:15%;
+}
+.vs-titol2{
+  margin-left:17%;
 }
 body { padding-right: 0 !important }
 

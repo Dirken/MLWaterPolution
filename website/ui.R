@@ -83,12 +83,13 @@ dbHeader <- dashboardHeader(title = "ICHNAEA",
                               <i class='fa fa-info-circle' style='height:30px;'></i> About 
                               
                               </a>"),  
-                              class = "dropdown"),
-                            tags$li(HTML( 
-                              "<a href='' style='padding-top:10px; padding-bottom:8px;'>
-                              <img height='20px'>
-                              <i class='fa fa-language' style='height:30px;'></i> Languages</a>"),
                               class = "dropdown")
+                            # ,
+                            # tags$li(HTML( 
+                            #   "<a href='' style='padding-top:10px; padding-bottom:8px;'>
+                            #   <img height='20px'>
+                            #   <i class='fa fa-language' style='height:30px;'></i> Languages</a>"),
+                            #   class = "dropdown")
                             
                             )
 
@@ -166,18 +167,17 @@ dashboardPage(
                 width = 12,
                 div(class="llistes",
                     
-                  div(class="column1",materialSwitch(inputId = "pointSource", label = "Point source?", status = "primary")),
-                  div(class="column2",materialSwitch(inputId = "molecular", label = "Molecular variables?", status = "primary")),
-                  div(class="column3",numericInput("percentatgeNAs", "Discard column from %NA", value=0, min = 0, max = 100, step =1))
-                  
+                  div(class="column1",materialSwitch(inputId = "pointSource", label = "Point source?", status = "primary")), 
+                  p(class="vs-titol2", " "),
+                  div(class="column2",materialSwitch(inputId = "molecular", label = "Molecular variables?", status = "primary"))
                 ),
                 
-                conditionalPanel(condition = "input.pointSource == 0",
-                                 sliderInput("aging", label = "Aged",  min = 0, max = 9000, value = c(0,9000))
-                ),
-                sliderInput("matrixSize", label = "Matrix Size",  min = 0, max = 9000, value = c(0,9000)),
+                # conditionalPanel(condition = "input.pointSource == 0",
+                #                  sliderInput("aging", label = "Aged",  min = 0, max = 9000, value = c(0,9000))
+                # ),
+                sliderInput("matrixSize", label = "Matrix Size",  min = 0, max = 100000, value = 1000, step = 1000),
                 
-                sliderInput("dissolution", label = "Dissolution",  min = 0, max = 9000, value = c(0,9000)),
+                sliderInput("percentatgeNAs", label = "Discard column from %NA",  min = 0, max = 100, value = 50, step = 1),
                 p(class="titol" ,"Predict "), br(),
                 div(class="llistes",
                     div(class="column1",
@@ -193,6 +193,7 @@ dashboardPage(
                       )
                     
                     ),
+                    
                     p(class="vs-titol", "VS"),
                     div(class="column2",
                       pickerInput(
