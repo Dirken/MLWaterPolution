@@ -24,6 +24,10 @@ shinyServer(function(input, output,session) {
   # Menu shinydashboard
   source("files/webDesign/menu.R", local = TRUE)
   
+  # Visualization part
+  source("files/webDesign/visualization.R", local = TRUE)
+  
+  
   ###############################################
   # Machine Learning
   ###############################################

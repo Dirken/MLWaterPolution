@@ -115,6 +115,8 @@ modalAbout <- HTML("
                    </center>
                    This website is possible thanks to the efforts made by Universitat Politècnica de Catalunya and Universitat of Barcelona.
                    </p>
+<br>
+<p> Developed by Ricard Meyerhofer</p>
                    </div>
                    <div class='modal-footer'>
                    <button type='button' class='btn btn-default' data-dismiss='modal'>Dismiss</button>
@@ -236,7 +238,19 @@ dashboardPage(
       
       tabItem("tab3",
               title = "Visualization",
-              box(title = "Visualization",width = 12, status = "primary")
+              box(title = "Visualization",width = 12, status = "primary",
+                  div(class="right",
+                    switchInput(inputId = "trainOrTest", 
+                                onLabel = "Training", offLabel = "Test")
+                    
+                  ),
+                  conditionalPanel(condition = "input.trainOrTest",
+                    p("TRAINING YOU")
+                  ),
+                  conditionalPanel(condition ="!input.trainOrTest",
+                    p("Testing you")
+                  )
+              )
       )
       
       

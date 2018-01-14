@@ -14,5 +14,4 @@ library(dplyr)
 library(scales)
 library(shinyFiles)
 
-
-predictValues <- NULL
+predictValues

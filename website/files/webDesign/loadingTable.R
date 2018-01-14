@@ -51,8 +51,8 @@ observeEvent(input$file,{
                            }
                          }  )
   newrow <- "Undefined season"
-  predictValues <<- substr(Dataset$data[,1],4,5)
   #print(Dataset$data[,1])
+  predictValues <<- substr(Dataset$data[,1],4,5)
   #print(predictValues)
   if(input$model != TRUE){
     print(input$model)
@@ -63,6 +63,9 @@ observeEvent(input$file,{
     # as.data.frame(lapply(Dataset$data, as.numeric))
     
     Dataset$data <-insertRow2(Dataset$data, newrow ,1)
+    
+    
+    
   }
   else{
     Dataset$data <-  Dataset$data[-1, ]

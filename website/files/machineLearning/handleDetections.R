@@ -8,4 +8,4 @@
 #These are the log values:
 
 #i have to save the slope when i already assign it...
-detectors <- Dataset$data$detectors
+detectors <- Dataset$SLOPES
