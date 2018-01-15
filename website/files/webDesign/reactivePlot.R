@@ -33,8 +33,8 @@ observeEvent(input$filename, {
         #print(input$filename)
         arrayFiles <- list.files(file.path(root, colnames(Dataset$data)[input$data_cell_clicked[2]$col+1],input$filename))
         #print(file.path(list.dirs(file.path(root, colnames(Dataset$data)[input$data_cell_clicked[2]$col+1]))[2]),input$filename)
-        print(arrayFiles[1])
-        print(file.path(root, colnames(Dataset$data)[input$data_cell_clicked[2]$col+1],input$filename,arrayFiles[my_i]))
+        # print(arrayFiles[1])
+        # print(file.path(root, colnames(Dataset$data)[input$data_cell_clicked[2]$col+1],input$filename,arrayFiles[my_i]))
         
         document <- read.csv(file.path(root, colnames(Dataset$data)[input$data_cell_clicked[2]$col+1],input$filename,arrayFiles[my_i]),
                              sep="\t", 
@@ -44,6 +44,7 @@ observeEvent(input$filename, {
         output[[plotname]] <- renderPlot({
           if (input$plotChooser == "lm"){
             aux <- lm(formula= document[,1] ~ document[,2], data = document )
+            
             plot(aux, which=c(1,1))
             
           }

@@ -23,7 +23,6 @@ DatasetAux$data$CLASS <- 0
 modeling.vars <- 1:nrow(DatasetAux$data)
 
 for (i in modeling.vars){
-  #this is not smart since i am not using what they choose 
   if(match(DatasetAux$data$TARGETtype[i], input$myPicker)){
     DatasetAux$data$CLASS[i] <- 1   
   }
@@ -48,4 +47,67 @@ for (i in modeling.vars){
 #The Tau should be the same for all the observations for the same variable
 #---------------------------------------------------------------------------------
 detectors <- Dataset$SLOPES
+
+
+#logarithms
+
+# for (attr in modeling.vars)
+#   aqua17[, attr] <- log10(aqua17[, attr] + 1)    #add one and take logs for SINGLE
+# 
+# for (attr in modeling.ratios)
+#   aqua17[, attr] <- log10(aqua17[, attr])    # we already added one, so safe
+
+
+################################## 
+# SCENARIOS
+##################################
+library (MASS)
+source("FSS.R", local = TRUE)
+
+#training
+
+if(input$algorithm == "LDA"){
+  if(input$molecular){
+    
+  }
+  else{#all
+    
+  }
+}
+elseif(input$algorithm == "QDA"){
+  if(input$molecular){
+  }
+  else{#all
+    
+  }
+}
+
+
+
+################################## 
+# BIGMATRIX
+##################################
+
+
+################################## 
+# SCENARIOS ON BIGMATRIX
+##################################
+if(input$algorithm == "LDA"){
+  if(input$molecular){
+    
+  }
+  else{#all
+    
+  }
+}
+elseif(input$algorithm == "QDA"){
+  if(input$molecular){
+  }
+  else{#all
+    
+  }
+}
+
+
+
   
