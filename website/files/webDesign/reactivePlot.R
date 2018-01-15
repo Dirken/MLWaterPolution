@@ -67,12 +67,8 @@ observeEvent(input$submit, {
           abline(0, input$slope/-2.0)
         }
         else if (input$locationChooser == "T90"){
-          slope = 25
           plot(-1, input$slope)
           abline(0, -1*input$slope)
-        }
-        else{
-          #scatter.smooth(document)
         }
     })
   })

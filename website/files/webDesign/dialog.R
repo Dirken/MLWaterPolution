@@ -50,12 +50,32 @@ observeEvent(input$show, {
 })
 observeEvent(input$saveModal,{
   #hauria de guardar el slope. Per altra part, quan introdueixo les dades, hauria de guardar l'slope tal qual i no ho faig atm...
+  #REPEATING CALCULUS, CRAP CODE BUT WORKS
   print("El valor de input$already loaded es : ")
   print(input$alreadyLoaded)
   if(input$alreadyLoaded == 'No'){
     Dataset$data[input$data_cell_clicked[1]$row+1, input$data_cell_clicked[2]$col+1] <- input$filename 
+    document <- read.csv(file.path(root, colnames(Dataset$data)[input$data_cell_clicked[2]$col+1],input$filename,arrayFiles[my_i]),
+                         sep="\t", 
+                         dec = ",",
+                         header = FALSE,
+                         strip.white = TRUE)
+    if(input$plotChooser == "lm"){
+      Dataset$SLOPES <- lm(formula= document[,1] ~ document[,2], data = document )$coefficients[2]
+    }
+    else{#SCATTER
+      Dataset$SLOPES <- diff(document[,1])/diff(document[,2])
+    }  
   }else{
+    # K is exactly the slope. Now K = -1/T90 = -2/T99, whichever is given
     Dataset$data[input$data_cell_clicked[1]$row+1, input$data_cell_clicked[2]$col+1] <- "Custom input" 
+    if(input$locationChooser == "T90"){
+      Dataset$SLOPES <- -1/input$slope
+    }
+    else{
+      Dataset$SLOPES <- -2/input$slope
+      
+    }
   }
   
   removeModal()

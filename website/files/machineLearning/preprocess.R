@@ -35,7 +35,7 @@ for (i in modeling.vars){
 # Replace the "<x" values with 0. Go through all columns and make all these columns numeric along the way
 for (i in modeling.vars){
   DatasetAux$data[ which(grepl("<",DatasetAux$data[,i])),i ] <- 0
-  DatasetAux$data[,i] <- as.numeric(DatasetAux$data[,i])
+  #DatasetAux$data[,i] <- as.numeric(DatasetAux$data[,i])
 }
 #season is assigned every time save is clicked in DatasetAux$data$SEASON
 
