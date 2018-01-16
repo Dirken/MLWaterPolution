@@ -56,7 +56,7 @@ observeEvent(input$saveModal,{
   if(input$alreadyLoaded == 'No'){
     Dataset$data[input$data_cell_clicked[1]$row+1, input$data_cell_clicked[2]$col+1] <- input$filename 
     document <- read.csv(file.path(root, colnames(Dataset$data)[input$data_cell_clicked[2]$col+1],input$filename,arrayFiles[my_i]),
-                         sep="\t", 
+                         sep="\t",
                          dec = ",",
                          header = FALSE,
                          strip.white = TRUE)
@@ -65,7 +65,7 @@ observeEvent(input$saveModal,{
     }
     else{#SCATTER
       Dataset$SLOPES <- diff(document[,1])/diff(document[,2])
-    }  
+    }
   }else{
     # K is exactly the slope. Now K = -1/T90 = -2/T99, whichever is given
     Dataset$data[input$data_cell_clicked[1]$row+1, input$data_cell_clicked[2]$col+1] <- "Custom input" 
@@ -74,7 +74,7 @@ observeEvent(input$saveModal,{
     }
     else{
       Dataset$SLOPES <- -2/input$slope
-      
+
     }
   }
   

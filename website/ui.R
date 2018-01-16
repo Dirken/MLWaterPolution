@@ -186,7 +186,7 @@ dashboardPage(
                       pickerInput(
                         inputId = "myPicker",
                         label = "Select predicts",
-                        choices = unique(predictValues),
+                        choices = "unique(predictValues)",
                         options = list(
                           `actions-box` = TRUE,
                           size = 10
@@ -201,7 +201,7 @@ dashboardPage(
                       pickerInput(
                         inputId = "myPicker2",
                         label = "Select vs predicts",
-                        choices = unique(predictValues),
+                        choices = "unique(predictValues)",
                         options = list(
                           `actions-box` = TRUE,
                           size = 10
@@ -245,16 +245,134 @@ dashboardPage(
                     
                   ),
                   conditionalPanel(condition = "input.trainOrTest",
-                    p("TRAINING YOU")
+                                   HTML("
+
+                                        <center><b class='titol'>Chosen variables</b></center>
+                                        
+                                        <table class='table table-striped'>
+                                        <thead>
+                                        <tr>
+                                        <th><b>Variables</b></th>
+                                        <th><b>Selected</b></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                        <td><b>Matrix Size:</b></td>
+                                        <td>10000</td>
+                                        </tr>
+                                        <tr>
+                                        <td><b>Discard column from %NA:</b></td>
+                                        <td>50%</td>
+                                        </tr>
+                                        <tr>
+                                        <td><b>Algorithm chosen:</b></td>
+                                        <td>QDA</td>
+                                        
+                                        </tr>
+                                        <tr>
+                                        <td><b>Target Class:</b> </td>
+                                        <td>HUMAN VS NO-HUMAN</td>
+                                        </tr>
+                                        </tbody>
+                                        </table>
+                                        
+                                        <center><b class='titol'>Truth Table</b></center>
+                                        <br>
+                                        <center><b>Prediction</b></center>
+                                        
+                                        <table class='table table-striped'>
+                                        <thead>
+                                        <tr>
+                                        <th>Truth</th>
+                                        <th>nonhuman</th>
+                                        <th>human</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        
+                                        <tr>
+                                        <tr>
+                                        <td>nonhuman</td>
+                                        <td>69</td>
+                                        <td>0</td>
+                                        </tr>
+                                        <tr>
+                                        <td>human</td>
+                                        <td>2</td>
+                                        <td>33</td>
+                                        </tr>
+                                        
+                                        </tbody>
+                                        </table>"
+                                   )
                   ),
                   conditionalPanel(condition ="!input.trainOrTest",
-                    p("Testing you")
-                  )
+                                   HTML("
+
+                                        <center><b class='titol'>Chosen variables</b></center>
+                                        
+                                        <table class='table table-striped'>
+                                        <thead>
+                                        <tr>
+                                        <th><b>Variables</b></th>
+                                        <th><b>Selected</b></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                        <td><b>Matrix Size:</b></td>
+                                        <td>10000</td>
+                                        </tr>
+                                        <tr>
+                                        <td><b>Discard column from %NA:</b></td>
+                                        <td>50%</td>
+                                        </tr>
+                                        <tr>
+                                        <td><b>Algorithm chosen:</b></td>
+                                        <td>QDA</td>
+                                        
+                                        </tr>
+                                        <tr>
+                                        <td><b>Target Class:</b> </td>
+                                        <td>HUMAN VS NO-HUMAN</td>
+                                        </tr>
+                                        </tbody>
+                                        </table>
+                                        
+                                        <center><b class='titol'>Truth Table</b></center>
+                                        <br>
+                                        <center><b>Prediction</b></center>
+                                        
+                                        <table class='table table-striped'>
+                                        <thead>
+                                        <tr>
+                                        <th>Truth</th>
+                                        <th>nonhuman</th>
+                                        <th>human</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        
+                                        <tr>
+                                        <tr>
+                                        <td>nonhuman</td>
+                                        <td>69</td>
+                                        <td>0</td>
+                                        </tr>
+                                        <tr>
+                                        <td>human</td>
+                                        <td>2</td>
+                                        <td>33</td>
+                                        </tr>
+                                        
+                                        </tbody>
+                                        </table>"
+                                        )
               )
-      )
       
       
-      
+              ))
     )
   )
 )
