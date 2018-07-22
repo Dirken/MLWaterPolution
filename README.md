@@ -3,7 +3,7 @@
 ## Title
 System that predicts the origin of fecal matter contamination in water.
 
-##Abstract:
+## Abstract:
 
 Fecal matter contains bacteria that in contact with other organisms such as humans, can be harmful. Drinking water contaminated by fecal matter can cause stomach and intestinal illness including diarrhea and nausea, and even lead to death. 
 
