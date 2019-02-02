@@ -15,11 +15,11 @@ source("global.R", local = TRUE)
 
 jsCode <- 
   "shinyjs.filename =
-function (){
-$(document).ready(function() {
-console.log(document.getElementById('filename').value);
-});
-}"
+  function (){
+    $(document).ready(function() {
+      console.log(document.getElementById('filename').value);
+    });
+  }"
 
 customSentence <- function(numItems, type) {
   paste("Selecciona el teu idioma")
