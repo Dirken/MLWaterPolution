@@ -4,8 +4,8 @@
 DatasetAux$data <- Dataset$data 
 DatasetAux$data$SEASON <- Dataset$season
   
-  #In the pre-processing we need a code that is able to detect which columns are suitable or not for the machine learning.
-  numeroFiles <- nrow(DatasetAux$data)
+#In the pre-processing we need a code that is able to detect which columns are suitable or not for the machine learning.
+numeroFiles <- nrow(DatasetAux$data)
 
 #In our case, we will let the user controling from which threshold of NA's he wants to discard a column.
 threshold <- input$percentatgeNAs / 100

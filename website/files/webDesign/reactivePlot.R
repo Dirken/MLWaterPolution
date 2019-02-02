@@ -6,7 +6,8 @@ source("files/webDesign/dialog.R", local = TRUE)
 
 observeEvent(input$filename, {
   output$uploaded <- reactive({
-    
+    print(colnames(Dataset$data))
+    print(input$data_cell_clicked[2]$col+1)
     max_plots <- length(list.files(file.path(root, colnames(Dataset$data)[input$data_cell_clicked[2]$col+1],input$filename)))
     # Insert the right number of plot output objects into the web page
     output$plot <- renderUI({
@@ -30,12 +31,8 @@ observeEvent(input$filename, {
       local({
         my_i <- i
         plotname <- paste("plot", my_i, sep="")
-        #print(input$filename)
+        print(input$filename)
         arrayFiles <- list.files(file.path(root, colnames(Dataset$data)[input$data_cell_clicked[2]$col+1],input$filename))
-        #print(file.path(list.dirs(file.path(root, colnames(Dataset$data)[input$data_cell_clicked[2]$col+1]))[2]),input$filename)
-        # print(arrayFiles[1])
-        # print(file.path(root, colnames(Dataset$data)[input$data_cell_clicked[2]$col+1],input$filename,arrayFiles[my_i]))
-        
         document <- read.csv(file.path(root, colnames(Dataset$data)[input$data_cell_clicked[2]$col+1],input$filename,arrayFiles[my_i]),
                              sep="\t", 
                              dec = ",",

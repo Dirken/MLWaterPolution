@@ -5,6 +5,7 @@ library(shinyjqui)
 library(shinycssloaders)
 library(shinyWidgets)
 library(gridExtra)
+library(ggraptR)
 #library(ECharts2Shiny)
 
 
@@ -79,9 +80,8 @@ dbHeader <- dashboardHeader(title = "ICHNAEA",
                               class = "dropdown"),
                             tags$li(HTML( 
                               "<a href='' style='padding-top:10px; padding-bottom:8px;'  data-toggle='modal' data-target='#myModal'>
-                              <img height='20px'>
-                              <i class='fa fa-info-circle' style='height:30px;'></i> About 
-                              
+                                <img height='20px'>
+                                <i class='fa fa-info-circle' style='height:30px;'></i> About 
                               </a>"),  
                               class = "dropdown")
                             # ,
@@ -115,8 +115,6 @@ modalAbout <- HTML("
                    </center>
                    This website is possible thanks to the efforts made by Universitat Politècnica de Catalunya and Universitat of Barcelona.
                    </p>
-<br>
-<p> Developed by Ricard Meyerhofer</p>
                    </div>
                    <div class='modal-footer'>
                    <button type='button' class='btn btn-default' data-dismiss='modal'>Dismiss</button>

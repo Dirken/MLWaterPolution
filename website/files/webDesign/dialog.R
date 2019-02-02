@@ -54,6 +54,7 @@ observeEvent(input$saveModal,{
   print("El valor de input$already loaded es : ")
   print(input$alreadyLoaded)
   if(input$alreadyLoaded == 'No'){
+    print(input$filename)
     Dataset$data[input$data_cell_clicked[1]$row+1, input$data_cell_clicked[2]$col+1] <- input$filename 
     document <- read.csv(file.path(root, colnames(Dataset$data)[input$data_cell_clicked[2]$col+1],input$filename,arrayFiles[my_i]),
                          sep="\t",

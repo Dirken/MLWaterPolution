@@ -1,0 +1,1 @@
+Here are the information regarding to the variables that appear in the dataset. If the name of the variable, doesn't have a folder, WILL NOT WORK!!!! You will not be able to do the LM and SCATTER display.
