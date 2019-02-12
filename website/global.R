@@ -13,5 +13,7 @@ library(ggplot2)
 library(dplyr)
 library(scales)
 library(shinyFiles)
+library(tidyverse)
+library(readxl)
 
 predictValues <- NULL

@@ -17,7 +17,10 @@ install.packages(c("shiny",
                    "shinycssloaders",
                    "shinyWidgets",
                    "gridExtra",
-                   "V8")
+                   "V8",
+                   "tidyverse",
+                   "readxl",
+                   "tibble")
 )
 
 #library(D3TableFilter)
