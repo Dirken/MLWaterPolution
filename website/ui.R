@@ -5,7 +5,7 @@ library(shinyjqui)
 library(shinycssloaders)
 library(shinyWidgets)
 library(gridExtra)
-library(ggraptR)
+#library(ggraptR)
 #library(ECharts2Shiny)
 
 
@@ -175,7 +175,8 @@ dashboardPage(
                 # conditionalPanel(condition = "input.pointSource == 0",
                 #                  sliderInput("aging", label = "Aged",  min = 0, max = 9000, value = c(0,9000))
                 # ),
-                sliderInput("matrixSize", label = "Matrix Size",  min = 0, max = 100000, value = 1000, step = 1000),
+                #sliderInput("matrixSize", label = "Matrix Size",  min = 0, max = 100000, value = 1000, step = 1000),
+                uiOutput(matrixSizeSlider),
                 
                 sliderInput("percentatgeNAs", label = "Discard column from %NA",  min = 0, max = 100, value = 50, step = 1),
                 p(class="titol" ,"Predict "), br(),
@@ -249,19 +250,22 @@ dashboardPage(
                                         
                                         <table class='table table-striped'>
                                         <thead>
-                                        <tr>
-                                        <th><b>Variables</b></th>
-                                        <th><b>Selected</b></th>
-                                        </tr>
+                                          <tr>
+                                          <th><b>Variables</b></th>
+                                          <th><b>Selected</b></th>
+                                          </tr>
                                         </thead>
                                         <tbody>
                                         <tr>
-                                        <td><b>Matrix Size:</b></td>
-                                        <td>10000</td>
+                                        
+                                        <td><b>Matrix Size:</b></td><td>"
+                                    ), output$percentatgeNAs, 
+                                    HTML("
+                                         </td>
                                         </tr>
                                         <tr>
                                         <td><b>Discard column from %NA:</b></td>
-                                        <td>50%</td>
+                                        <td>input.percentatgeNAs</td>
                                         </tr>
                                         <tr>
                                         <td><b>Algorithm chosen:</b></td>

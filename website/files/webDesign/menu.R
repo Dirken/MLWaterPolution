@@ -25,11 +25,11 @@ onclick('switchState', runjs({'
   '}))
 
 output$Semi_collapsible_sidebar<-renderMenu({
-  
+
   sidebarMenu(id = "tab",
               menuItem("Table", tabName = "tab1",icon = icon("table")),
               menuItem("Scenario", tabName = "tab22", icon = icon("gears")),
-              conditionalPanel(condition = "input.generateMatrix >=1",    
+              conditionalPanel(condition = "input.generateMatrix >=1 || input.model >=1 ",    
                  sidebarMenu( menuItem("Modelling", tabName = "tab2", icon = icon("line-chart"))),
                  sidebarMenu( menuItem("Visualization", tabName = "tab3",icon = icon("eye")))
               ),

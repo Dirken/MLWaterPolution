@@ -27,6 +27,9 @@ shinyServer(function(input, output,session) {
   # Visualization part
   source("files/webDesign/visualization.R", local = TRUE)
   
+  #Sliders, result tables.
+  source("files/webDesign/components.R", local = TRUE)
+  
   
   ###############################################
   # Machine Learning
