@@ -37,7 +37,10 @@ output$Semi_collapsible_sidebar<-renderMenu({
               conditionalPanel("input.tab == 'tab1'",
                                
                  materialSwitch(inputId = "model", label = "Do you have a model?", status = "primary"),
-                 # input$model,
+                 #conditionalPanel("input.model >= 1",
+                #                  p("hola"),
+                #    fileInput("model", "Browse model")
+                # ),
                    selectInput("readFunction", "Format to read", c(
                      # Base R:
                      "read.table",

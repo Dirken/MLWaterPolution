@@ -1,0 +1,8 @@
+- Load / download bigmatrix
+- connect with ml part.
+- help button is not downloading
+- make not crush the app when error reading
+- add fancy animation when loading
+- upload to a server
+- allow user to put its own algorithm
+

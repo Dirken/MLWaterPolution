@@ -226,9 +226,9 @@ dashboardPage(
                             choices = c("LDA", "QDA"), 
                             options = list(title = "Choose your algorithm ")
                 ),
-                HTML("<hr class='style11'>")
-                # withSpinner(DT::dataTableOutput("data")) mostrar la bigmatrix
-                
+                HTML("<hr class='style11'>"),
+                withSpinner(DT::dataTableOutput("data2"))
+
                 
               )
               
@@ -258,7 +258,7 @@ dashboardPage(
                                         <tbody>
                                         <tr>
                                         
-                                        <td><b>Matrix Size:</b></td><td>1000
+                                        <td><b>Matrix Size:</b></td><td>
                                          </td>
                                         </tr>
                                         <tr>
