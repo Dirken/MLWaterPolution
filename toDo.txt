@@ -1,8 +1,23 @@
-- Load / download bigmatrix
-- connect with ml part.
-- help button is not downloading
-- make not crush the app when error reading
-- add fancy animation when loading
-- upload to a server
-- allow user to put its own algorithm
+Fetes
+-----
+- Flux de la web (interacció de que quan acabes de prémer un butó, passis a una pantalla, etc.)
+- Càrrega de les dades del programa.
+- Permetre a l'usuari escollir la seasonality de les dades.
+
+
+Per fer (almost)
+----------------
+- Fer que els sliders i totes les seleccions que hi ha en la pantalla de escenario, siguin reactius.
+- Connectar el button de la descàrrega de la bigmatrix, load bigmatrix amb les dades.
+- Fer més robusta la lectura del dataset.
+- Afegir un help on et puguis baixar un manual d'usuari o et redirigeixi a una pàgina que ho expliqui.
+- Millorar el about estètica i a nivell de contingut.
+
+
+Crec que s'haurien de fer per perfeccionar
+------------------------------------------
+- Que l'usuari pugui afegir els seus propis algoritmes (va aparèixer en la defensa del TFG com a idea)
+- Multiidioma.
+- Vull posar una animació al principi de l'aplicació que sigui maca mentres carregui un cop estigui en el servidor.
+
 
